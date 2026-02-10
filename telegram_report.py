@@ -1,12 +1,17 @@
 import requests
 import json
 from typing import Optional
+from dotenv import load_dotenv
+import os
 
-# --- Configuration (REPLACE THESE) ---
+# Load environment variables from .env file
+load_dotenv()
+
+# --- Configuration (from .env file) ---
 # 1. Get your Bot Token from @BotFather
-BOT_TOKEN: str = "8225094374:AAHaQaqyaZxBBi7oY9lBdS2O2CT1OF2qbUI"
+BOT_TOKEN: str = os.getenv("BOT_TOKEN", "YOUR_TELEGRAM_BOT_TOKEN")
 # 2. Get your Chat ID (user, group, or channel)
-CHAT_ID: str = "-4903090537"
+CHAT_ID: str = os.getenv("CHAT_ID", "YOUR_CHAT_ID")
 
 # Telegram API base URL
 TELEGRAM_API_URL: str = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
@@ -14,7 +19,7 @@ TELEGRAM_API_URL: str = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
 def send_telegram_report(
     report_message: str, 
     chat_id: str = CHAT_ID, 
-    parse_mode: Optional[str] = "MarkdownV2"
+    parse_mode: Optional[str] = "HTML"
 ) -> None:
     """
     Sends a pre-formatted report message to a specified Telegram chat.
@@ -49,8 +54,10 @@ def send_telegram_report(
 
     except requests.exceptions.RequestException as e:
         print(f"❌ Network/Request Error during Telegram call: {e}")
+        raise {e}
     except json.JSONDecodeError:
         print("❌ Failed to decode JSON response from Telegram.")
+        raise {e}
 
 
 # --- Example Usage ---
@@ -69,7 +76,7 @@ if __name__ == "__main__":
         "_Please review immediately\\._"
     )
 
-    report_ = f"*📈 Günlük Rapor! 📈*\n\nQuiz Dosyası: `quiz_01-12-25_49-55.json`\nQuiz Tipi: `Sıralı Test Quiz`\nToplam `{100} sorudan {84} soru doğru yapıldı.`\n\n"
+    report_ = f"<b>📈 Günlük Rapor! 📈</b>\n\nQuiz Dosyası: <code>quiz_01-12-25_49-55.json</code>\nQuiz Tipi: <code>Sıralı Test Quiz</code>\nToplam <code>{100} sorudan {84} soru doğru yapıldı.</code>\n\n"
     
     print("--- Attempting to Send Report ---")
     send_telegram_report(report_)

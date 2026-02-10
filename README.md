@@ -1,2 +1,84 @@
 # ProjectEnglish
 Learn English
+# ProjectEnglish
+
+**(ALL OF THIS README IS WRITTEN BY AI)**
+
+A small Python project to help with English practice and reporting. Provides CLI/TUI helpers, data files for words/pronunciations, and scripts to generate reports (including Telegram integration).
+
+**Status:** Working prototype — scripts and data provided; see usage below.
+
+**Main scripts:**
+- `main.py` — project entry point / primary workflow
+- `telegram_report.py` — generate/send Telegram reports
+- `test.py` — quick test harness
+- `ASCII/` — TUI/ASCII helper scripts
+
+## Features
+- Manage and review words from `words.csv` and `pronunciations/`.
+- Generate CSV analytics (`analytics.csv`, `daily_stats.csv`, `statistics.csv`).
+- Send reports or messages via Telegram (see `telegram_report.py`).
+
+## Files
+- `words.csv` — word list used by the app
+- `pronunciations/` — pronunciation audio assets
+- `analytics.csv`, `daily_stats.csv`, `statistics.csv` — generated statistics
+- `sent_tg_messages.json` — record of Telegram messages sent
+- `config.json` — configuration (e.g., tokens, settings)
+
+## Requirements
+- Python 3.8+ (project uses standard libs + some common packages).
+- Recommended packages (some may already be present in the provided `env` virtualenv):
+	- `requests`
+	- `python-dotenv` (or `dotenv`)
+	- `gtts`, `pydub` (if using audio features)
+	- `googletrans` (if translation is used)
+
+If you prefer to create a fresh venv on Windows:
+
+```powershell
+python -m venv env
+env\Scripts\activate
+pip install -r requirements.txt  # optional if you create one
+```
+
+Or reuse the included virtualenv at `env/` by activating it:
+
+```powershell
+env\Scripts\activate
+```
+
+## Configuration
+Edit `config.json` to set project-specific settings (API tokens, Telegram chat id, etc.). If environment variables are preferred, you can adapt the scripts to read from a `.env` file.
+
+## Usage
+Run the main script:
+
+```powershell
+python main.py
+```
+
+Generate/send a Telegram report:
+
+```powershell
+python telegram_report.py
+```
+
+Run tests or quick checks:
+
+```powershell
+python test.py
+```
+
+## Development
+- Keep word list data in `words.csv` and audio in `pronunciations/`.
+- Analytics are appended to the CSV files; check `sent_tg_messages.json` to see Telegram history.
+
+## Contributing
+Open an issue or submit a PR. Describe your change and include how to run the relevant script.
+
+## License
+This repository does not include a license file. Add one (e.g., MIT) if you plan to open-source the code.
+
+---
+If you'd like, I can (1) produce a `requirements.txt` from the environment, (2) add example `config.json`/`.env` templates, or (3) tailor the README for a specific workflow — tell me which and I'll update it.

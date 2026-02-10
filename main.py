@@ -98,7 +98,7 @@ def analytics(get_set,time_finish,time_start,type):
         return analytics_data
 
 def daily_stat(get_set, correct, wrong, blank, total,level):
-    lg(f"daily_stat({get_set},{correct},{wrong},{blank},{total})")
+    lg(f"daily_stat({get_set},{correct},{wrong},{blank},{total},{level})")
     if get_set == "get":
         if not os.path.exists("daily_stats.csv"):
             permission = "w"
@@ -110,7 +110,7 @@ def daily_stat(get_set, correct, wrong, blank, total,level):
             permission = "w"
         else: permission = "a"
         with open("daily_stats.csv",permission,encoding="UTF-8") as f:
-            f.write(f"{datetime.datetime.now().strftime("%Y-%m-%d")},{correct},{wrong},{blank},{total},{level}")
+            f.write(f"{datetime.datetime.now().strftime("%Y-%m-%d")},{correct},{wrong},{blank},{total},{level}\n")
             f.close()
             return f"{datetime.datetime.now().strftime("%Y-%m-%d")},{correct},{wrong},{blank},{total},{level}"
 
@@ -222,8 +222,16 @@ def admin_login_interface(just_auth=False,legacy_selection_menu=False):
     lg(f"admin_login_interface()")
     cls()
     import getpass
+    try:
+        from dotenv import load_dotenv
+        load_dotenv()
+    except Exception:
+        # dotenv not available; continue and rely on environment or fallback
+        pass
+
+    admin_password = os.getenv("ADMIN_PASSWORD")
     password = getpass.getpass("Admin Şifresini giriniz: ")
-    if password == "1943":
+    if password == admin_password:
         if just_auth == False:
             """ admin_ = admin_console() """
         else:
@@ -443,7 +451,7 @@ def main(quiz_config={}, legacy_start_menu=False):
                     question_amount = len(known_words)
                 else:
                     question_amount = quiz_config["level_1_question_count"]
-                print(known_words)
+                lg(known_words)
                 for i in range(question_amount):
                     word = random.choice(known_words)
                     time_ = datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
@@ -492,16 +500,17 @@ def main(quiz_config={}, legacy_start_menu=False):
                                 todays.append(line.strip())
                     time.sleep(.3)
                     for line in todays:
-                        """ print(line)
-                        print(line.split(","))
-                        print(line.split(",")[4])
-                        time.sleep(999) """
-                        if line.split(",")[4] == "True":
-                            correct_counter_ += 1
-                        elif line.split(",")[4] == "False":
-                            wrong_counter_ += 1
-                        else: blank_counter_ += 1
-                        total_counter_ += 1
+                        if line.split(",")[5] == "1":
+                            """ print(line)
+                            print(line.split(","))
+                            print(line.split(",")[4])
+                            time.sleep(999) """
+                            if line.split(",")[4] == "True":
+                                correct_counter_ += 1
+                            elif line.split(",")[4] == "False":
+                                wrong_counter_ += 1
+                            else: blank_counter_ += 1
+                            total_counter_ += 1
                     f.close()
                 analytics_data = analytics("get",None,None,None)
                 daily_stat("set",correct_counter_,wrong_counter_,blank_counter_,total_counter_,1)
@@ -631,11 +640,90 @@ def main(quiz_config={}, legacy_start_menu=False):
                             pronounce_word(word)
                         LEVEL_2_PASSED = True
                     analytics("set",datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S"),start_time,"level_2_passed")
-
-
+                    """ daily_stat("set,") """
+                    with open("statistics.csv", "r", encoding="UTF-8") as f:
+                        correct_counter__ = wrong_counter__ = blank_counter__ = total_counter__ = 0
+                        lines = f.readlines()
+                        todays=[]
+                        for line in lines[::-1]:
+                            if datetime.datetime.now().strftime("%Y-%m-%d") in line:
+                                if line.strip() not in todays:
+                                    todays.append(line.strip())
+                        time.sleep(.3)
+                        for line in todays:
+                            print(line.split(","))
+                            if line.split(",")[5] == "2":
+                                """ print(line)
+                                print(line.split(","))
+                                print(line.split(",")[4])
+                                time.sleep(999) """
+                                """ print(line.split(",")) """
+                                if line.split(",")[4] == "True":
+                                    
+                                    correct_counter__ += 1
+                                    print(+1)
+                                elif line.split(",")[4] == "False":
+                                    wrong_counter__ += 1
+                                    print(-1)
+                                else: blank_counter__ += 1
+                                total_counter__ += 1
+                        f.close()
+                    lg(correct_counter__,wrong_counter__,blank_counter__,total_counter__)
+                    daily_stat("set",correct_counter__,wrong_counter__,blank_counter__,total_counter__,2)
 
                 if LEVEL_1_PASSED == True and LEVEL_2_PASSED == True:
                     print("Tebrikler! Seviye 2'yi de geçtiğiniz tespit edildi! Tüm seviyeleri tamamladınız!")
+                    if quiz_config.get("send_telegram_message"):
+                        m_ = []
+                        with open("daily_stats.csv", "r", encoding="UTF-8") as fg:
+                            liness = fg.readlines()
+                            for line in liness[::-1]:
+                                if datetime.datetime.now().strftime("%Y-%m-%d") in line:
+                                    m_.append(line)
+                            fg.close()
+                        o_ = []
+                        if len(m_) == 2:
+                            for i in range(1,5):
+                                ox = 0
+                                for x in m_:
+                                    ox += int(x.split(",")[i])
+                                o_.append(ox)
+                        else:
+                            for i in range(1,5):
+                                o_.append(int(m_[0].split(",")[i]))
+                        lg(o_)
+                        print("Sending Report.")
+                        if o_[0] == 0: puan = 0
+                        else:
+                            net = o_[0]+(-o_[1]-o_[2])*.25
+                            if o_[3] != 0:
+                                puan = o_[0]/o_[3]*100
+                            else: puan = 0
+                        telegram_text = f"Günlük Analiz\n\nPuan : %{puan:.2f}\nNet : {net:.2f}\n\nDoğru Sayısı : {o_[0]}\nYanlış Sayısı : {o_[1]}\nBoş Soru Sayısı : {o_[2]}\nTotal Soru Sayısı : {o_[3]}\n\n"
+                        try:
+                            with open("sent_tg_messages.json","r",encoding="UTF-8") as x:
+                                ddt = json.load(x)
+                                x.close()
+                        except (json.JSONDecodeError, FileNotFoundError):
+                            ddt = {}
+                        if datetime.datetime.now().strftime("%Y-%m-%d") not in ddt:
+                            import telegram_report
+                            try:
+                                telegram_report.send_telegram_report(telegram_text)
+                                with open("sent_tg_messages.json","w",encoding="UTF-8") as h:
+                                    ddt[datetime.datetime.now().strftime("%Y-%m-%d")] = telegram_text
+                                    json.dump(ddt,h,indent=4)
+                                    h.close()
+                            except:
+                                time.sleep(60)
+                                telegram_report.send_telegram_report(telegram_text)
+                                with open("sent_tg_messages.json","w",encoding="UTF-8") as h:
+                                    ddt[datetime.datetime.now().strftime("%Y-%m-%d")] = telegram_text
+                                    json.dump(ddt,h,indent=4)
+                                    h.close()
+                        if DEBUG:
+                            int(input(""))
+
                     time.sleep(3)
                     cls()
                     main(quiz_config=quiz_config)
