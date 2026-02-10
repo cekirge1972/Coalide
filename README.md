@@ -1,6 +1,12 @@
 # ProjectEnglish
 
-**(ALL OF THIS README IS WRITTEN BY AI)**
+## Future Features
+- Show if the word Noun or Verb when asking
+- Startup admin interface (press - on startup) UI and menu itself
+- More commmands in admin controls (pos command for selecting an key with its abs position)
+- POTENTIAL : Admin Console with TUI with dropback to legacy
+
+**(BELLOW THIS TEXT IS WRITTEN BY AI)**
 
 A small Python project to help with English practice and reporting. Provides CLI/TUI helpers, data files for words/pronunciations, and scripts to generate reports (including Telegram integration).
 
@@ -71,9 +77,3 @@ python test.py
 ## Development
 - Keep word list data in `words.csv` and audio in `pronunciations/`.
 - Analytics are appended to the CSV files; check `sent_tg_messages.json` to see Telegram history.
-
-## Future Features
-- Show if the word Noun or Verb when asking
-- Startup admin interface (press - on startup) UI and menu itself
-- More commmands in admin controls (pos command for selecting an key with its abs position)
-- POTENTIAL : Admin Console with TUI with dropback to legacy
