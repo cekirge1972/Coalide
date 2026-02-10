@@ -72,11 +72,8 @@ python test.py
 - Keep word list data in `words.csv` and audio in `pronunciations/`.
 - Analytics are appended to the CSV files; check `sent_tg_messages.json` to see Telegram history.
 
-## Contributing
-Open an issue or submit a PR. Describe your change and include how to run the relevant script.
-
-## License
-This repository does not include a license file. Add one (e.g., MIT) if you plan to open-source the code.
-
----
-If you'd like, I can (1) produce a `requirements.txt` from the environment, (2) add example `config.json`/`.env` templates, or (3) tailor the README for a specific workflow — tell me which and I'll update it.
+##Future Features
+- Show if the word Noun or Verb when asking
+- Startup admin interface (press - on startup) UI and menu itself
+- More commmands in admin controls (pos command for selecting an key with its abs position)
+- POTENTIAL : Admin Console with TUI with dropback to legacy
