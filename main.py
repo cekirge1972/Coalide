@@ -231,6 +231,10 @@ def detect_language(text):
         elif text.lower() == val.lower():
             return "tr"
 
+""" def admin_interface(buffer=True):
+    print("heia")
+    main() """
+
 def admin_login_interface(just_auth=False,legacy_selection_menu=False):
     lg(f"admin_login_interface()")
     cls()
@@ -403,105 +407,105 @@ def main(quiz_config={}, legacy_start_menu=False,mode="play"):
             cls()
             if auth:
                 print("Admin kontrolüne hoş geldiniz!")
-    default_config = get_config(["default_quiz_config"])
-    if quiz_config == {}:
-        temp_config = copy.deepcopy(default_config)
-    else:
-        temp_config = [quiz_config]
-    print("Mevcut quiz yapılandırması:\n")
-    for key, value in temp_config[0].items():
-        for key_, value_ in default_config[0].items():
-            if key == key_:
-                if value != value_:txt = f" (Varsayılan : {value_})"
-                else:txt = ""
-                
-                print(f"{key}: {value}{txt}")
-
-    loop=True
-    while loop == True:
-        command = input("\n\n> ")
-        if command.startswith("set "):
-            if "--help" in command:
-                print("set komutu, geçici quiz yapılandırmasını güncellemek için kullanılır. Kullanım: set <anahtar> <değer>")
-                print("Anahtarlar:")
-                for key in temp_config[0].keys():
-                    print(f"- {key}")
-            else:
-                try:
-                    _, key, value = command.split(" ", 2)
-                    if key in temp_config[0]:
-                        if value.lower() in ["true", "false"]:
-                            value = value.lower() == "true"
-                        elif value.isdigit():
-                            value = int(value)
-                        temp_config[0][key] = value
-                        print(f"{key} başarıyla {value} olarak güncellendi.")
-                        print(temp_config)
-                    else:
-                        print(f"Geçersiz anahtar: {key}")
-                except ValueError:
-                    print("Geçersiz komut formatı. Kullanım: set <anahtar> <değer>")
-        elif command.startswith("dset "):
-            if "--help" in command:
-                print("dset komutu, varsayılan quiz yapılandırmasını güncellemek için kullanılır. Kullanım: dset <anahtar> <değer>")
-                print("Anahtarlar:")
-                for key in default_config[0].keys():
-                    print(f"- {key}")
-            else:
-                try:
-                    print("dset <anahtar> <değer>: Varsayılan quiz yapılandırmasını günceller.")
-                    _, key, value = command.split(" ", 2)
-                    if key in default_config[0]:
-                        if value.lower() in ["true", "false"]:
-                            value = value.lower() == "true"
-                        elif value.isdigit():
-                            value = int(value)
-                        default_config[0][key] = value
-                        temp_config[0][key] = value
-                        set_config("default_quiz_config", key, value)
-                        print(f"{key} başarıyla {value} olarak güncellendi.")
-                    else:
-                        print(f"Geçersiz anahtar: {key}")
-                except ValueError:
-                    print("Geçersiz komut formatı. Kullanım: dset <anahtar> <değer>")
-
-        elif command == "show":
-            if "--help" in command:
-                print("show komutu, mevcut quiz yapılandırmasını gösterir. Kullanım: show")
-            else:
+                default_config = get_config(["default_quiz_config"])
+                if quiz_config == {}:
+                    temp_config = copy.deepcopy(default_config)
+                else:
+                    temp_config = [quiz_config]
                 print("Mevcut quiz yapılandırması:\n")
                 for key, value in temp_config[0].items():
                     for key_, value_ in default_config[0].items():
                         if key == key_:
                             if value != value_:txt = f" (Varsayılan : {value_})"
                             else:txt = ""
-                            print(value,value_,txt,key,key_)
+                            
                             print(f"{key}: {value}{txt}")
-        elif command == "exit":
-            if "--help" in command:
-                print("exit komutu, admin kontrolünden çıkar ve ana menüye döner. Kullanım: exit")
-            else:
-                loop = False
-                if temp_config:
-                    main(quiz_config=temp_config[0])
-                else:
-                    main(quiz_config=default_config[0])
-                return
-        elif command == "cls" or command == "clear":
-            if "--help" in command:
-                print("cls/clear komutu, ekranı temizler. Kullanım: cls/clear")
-            else:
-                cls()
-        elif command == "help":
-            print("Komutlar:")
-            print("- set <anahtar> <değer>: Geçici quiz yapılandırmasını günceller.")
-            print("- dset <anahtar> <değer>: Varsayılan quiz yapılandırmasını günceller.")
-            print("- show: Mevcut quiz yapılandırmasını gösterir.")
-            print("- cls/clear: Ekranı temizler.")
-            print("- help: Komut listesini gösterir.")
-            print("- exit: Admin kontrolünden çıkar ve ana menüye döner.")
-        else:
-            print("Geçersiz komut! Komutlar: set <anahtar> <değer>, dset <anahtar> <değer>, show, cls/clear, help, exit")   
+
+                loop=True
+                while loop == True:
+                    command = input("\n\n> ")
+                    if command.startswith("set "):
+                        if "--help" in command:
+                            print("set komutu, geçici quiz yapılandırmasını güncellemek için kullanılır. Kullanım: set <anahtar> <değer>")
+                            print("Anahtarlar:")
+                            for key in temp_config[0].keys():
+                                print(f"- {key}")
+                        else:
+                            try:
+                                _, key, value = command.split(" ", 2)
+                                if key in temp_config[0]:
+                                    if value.lower() in ["true", "false"]:
+                                        value = value.lower() == "true"
+                                    elif value.isdigit():
+                                        value = int(value)
+                                    temp_config[0][key] = value
+                                    print(f"{key} başarıyla {value} olarak güncellendi.")
+                                    print(temp_config)
+                                else:
+                                    print(f"Geçersiz anahtar: {key}")
+                            except ValueError:
+                                print("Geçersiz komut formatı. Kullanım: set <anahtar> <değer>")
+                    elif command.startswith("dset "):
+                        if "--help" in command:
+                            print("dset komutu, varsayılan quiz yapılandırmasını güncellemek için kullanılır. Kullanım: dset <anahtar> <değer>")
+                            print("Anahtarlar:")
+                            for key in default_config[0].keys():
+                                print(f"- {key}")
+                        else:
+                            try:
+                                print("dset <anahtar> <değer>: Varsayılan quiz yapılandırmasını günceller.")
+                                _, key, value = command.split(" ", 2)
+                                if key in default_config[0]:
+                                    if value.lower() in ["true", "false"]:
+                                        value = value.lower() == "true"
+                                    elif value.isdigit():
+                                        value = int(value)
+                                    default_config[0][key] = value
+                                    temp_config[0][key] = value
+                                    set_config("default_quiz_config", key, value)
+                                    print(f"{key} başarıyla {value} olarak güncellendi.")
+                                else:
+                                    print(f"Geçersiz anahtar: {key}")
+                            except ValueError:
+                                print("Geçersiz komut formatı. Kullanım: dset <anahtar> <değer>")
+
+                    elif command == "show":
+                        if "--help" in command:
+                            print("show komutu, mevcut quiz yapılandırmasını gösterir. Kullanım: show")
+                        else:
+                            print("Mevcut quiz yapılandırması:\n")
+                            for key, value in temp_config[0].items():
+                                for key_, value_ in default_config[0].items():
+                                    if key == key_:
+                                        if value != value_:txt = f" (Varsayılan : {value_})"
+                                        else:txt = ""
+                                        print(value,value_,txt,key,key_)
+                                        print(f"{key}: {value}{txt}")
+                    elif command == "exit":
+                        if "--help" in command:
+                            print("exit komutu, admin kontrolünden çıkar ve ana menüye döner. Kullanım: exit")
+                        else:
+                            loop = False
+                            if temp_config:
+                                main(quiz_config=temp_config[0])
+                            else:
+                                main(quiz_config=default_config[0])
+                            return
+                    elif command == "cls" or command == "clear":
+                        if "--help" in command:
+                            print("cls/clear komutu, ekranı temizler. Kullanım: cls/clear")
+                        else:
+                            cls()
+                    elif command == "help":
+                        print("Komutlar:")
+                        print("- set <anahtar> <değer>: Geçici quiz yapılandırmasını günceller.")
+                        print("- dset <anahtar> <değer>: Varsayılan quiz yapılandırmasını günceller.")
+                        print("- show: Mevcut quiz yapılandırmasını gösterir.")
+                        print("- cls/clear: Ekranı temizler.")
+                        print("- help: Komut listesini gösterir.")
+                        print("- exit: Admin kontrolünden çıkar ve ana menüye döner.")
+                    else:
+                        print("Geçersiz komut! Komutlar: set <anahtar> <değer>, dset <anahtar> <değer>, show, cls/clear, help, exit")   
 
                 
         if choice_ == list(choices.keys())[0] or choice_ == "dstart":
@@ -729,7 +733,45 @@ def main(quiz_config={}, legacy_start_menu=False,mode="play"):
                             if o_[3] != 0:
                                 puan = o_[0]/o_[3]*100
                             else: puan = 0
-                        telegram_text = f"Günlük Analiz\n\nPuan : %{puan:.2f}\nNet : {net:.2f}\n\nDoğru Sayısı : {o_[0]}\nYanlış Sayısı : {o_[1]}\nBoş Soru Sayısı : {o_[2]}\nTotal Soru Sayısı : {o_[3]}\n\n"
+                        tdy = datetime.datetime.now().strftime("%Y-%m-%d")
+                        tdy_stats = []
+                        with open("statistics.csv","r",encoding="UTF-8") as ff:
+                            lineies = ff.readlines()
+                            for lime in lineies[::-1]:
+                                if tdy in lime:
+                                    tdy_stats.append(lime)
+                            ff.close()
+                        flb = {}
+                        for stat in tdy_stats:
+                            parts = stat.split(",")
+                            key = parts[1]
+                            is_success = parts[4] == "True"
+
+                            current_true, current_total = flb.get(key, [0, 0])
+
+                            new_true = current_true + 1 if is_success else current_true
+                            new_total = current_total + 1
+                            
+                            flb[key] = [new_true, new_total]
+                        for key,val in flb.items():
+                            if val[1] != 0:
+                                flb[key] = [val[0],val[1],(val[0]/val[1])*100]
+                            else:
+                                flb[key] = [val[0],val[1],0]
+                        flb = dict(sorted(flb.items(), key=lambda item: item[1][2], reverse=True))
+                        lb = ""
+                        """ print("hiaa")
+                        print(flb)
+                        print("hi")
+                        time.sleep(999) """
+                        for key, a in list(flb.items())[:20]:
+                            lb = f"{lb}{key} -> %{a[2]} ({a[0]}/{a[1]})\n"
+
+                        lb2 = ""
+                        for key, a in list(flb.items())[-20:]:
+                            lb2 = f"{lb2}{key} -> %{a[2]} ({a[0]}/{a[1]})\n"
+                        
+                        telegram_text = f"📅 Günlük Analiz 📅 ({datetime.datetime.now().strftime("%Y/%m/%d")})\n\nPuan : %{puan:.2f}\nNet : {net:.2f}\n\n✅ Doğru : {o_[0]}\n❌ Yanlış : {o_[1]}\n⚪ Boş : {o_[2]}\n📝 Total Soru Sayısı : {o_[3]}\n\n🏆 Top 20 : \n\n{lb}\n📉 Worst 20 : \n\n{lb2}"
                         try:
                             with open("sent_tg_messages.json","r",encoding="UTF-8") as x:
                                 ddt = json.load(x)
