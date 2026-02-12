@@ -8,7 +8,7 @@ A small Python project to help with English practice and reporting. Provides CLI
 - [ ] More commmands in admin controls (pos command for selecting an key with its abs position)
 - [x] Colorama with question asking/answering and with the stats
 - [ ] Admin Controls (on setup) will have detailed statistics and can control/manipulate stats. Admin controls will also have a way to reset statistic for test purposes
-- [ ] Telegram report tool will also include that days leaderboard for words
+- [X] Telegram report tool will also include that days leaderboard for words
 - [ ] Optimization
 - [ ] POTENTIAL : Admin Console with TUI with dropback to legacy
 
