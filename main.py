@@ -4,6 +4,7 @@ import json
 import re
 import random
 import datetime
+import ASCII.Animations.video
 import ASCII.ASCII_LevelUp
 import ASCII.ASCII_selection_menu
 import ASCII.ASCII_start_menu
@@ -267,14 +268,21 @@ def save_stat(time_,word,translation,answer,correct,level):
         file.write(stat_line)
         file.close()
 
-def quest(question_amount,wordlist,word_progression,dd,typer,quiz_config):
-    unknown_words = wordlist
-    for i in range(question_amount):
+def quest(question_amount, wordlist, word_progression, dd, typer, quiz_config, current_level):
+
+    if question_amount > len(wordlist):
+        question_amount = len(wordlist)
+
+    selected_words = random.sample(wordlist, question_amount)
+
+    for i, word in enumerate(selected_words):
         cls()
-        word = random.choice(unknown_words)
+        
         time_ = datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
         type_of_word = next((d[word][1] for d in typer if word in d), "Not found")
+        
         if random.randint(1,2) == 1:
+            # --- Logic for Turkish -> English ---
             if word in word_progression:
                 basari = word_progression[word][2]*100
                 if basari >= 80: cc = Fore.GREEN
@@ -291,20 +299,22 @@ def quest(question_amount,wordlist,word_progression,dd,typer,quiz_config):
             except Exception as e: 
                 if word in word_progression:
                     print(f"Hata : {e}")
+            
             answer = input(f"{i+1}. '{word}' ({type_of_word}) kelimesinin Türkçe karşılığı nedir? ")
+            
             if answer.lower() == dd[word].lower():
                 print(Fore.GREEN+"\nDoğru!"+Style.RESET_ALL)
-                save_stat(time_,word,dd[word],answer,True,2)
+                save_stat(time_,word,dd[word],answer,True,current_level)
             elif answer == "":
                 print(Fore.LIGHTRED_EX+f"Boş bırakıldı! Doğru cevap: {word}"+Style.RESET_ALL)
-                save_stat(time_,word,dd[word],answer,"blank",2)
-
+                save_stat(time_,word,dd[word],answer,"blank",current_level)
             elif answer.lower() == "exit":
                 os._exit(1)
             else:
                 print(Fore.RED+f"Yanlış! Doğru cevap: {dd[word]}"+Style.RESET_ALL)
-                save_stat(time_,word,dd[word],answer,False,2)
+                save_stat(time_,word,dd[word],answer,False,current_level)
         else:
+            # --- Logic for English -> Turkish ---
             if word in word_progression:
                 basari = word_progression[word][2]*100
                 if basari >= 80: cc = Fore.GREEN
@@ -321,18 +331,21 @@ def quest(question_amount,wordlist,word_progression,dd,typer,quiz_config):
             except Exception as e: 
                 if word in word_progression:
                     print(f"Hata : {e}")
+            
             answer = input(f"{i+1}. '{dd[word]}' ({type_of_word}) kelimesinin İngilizce karşılığı nedir? ")
+            
             if answer.lower() == word.lower():
                 print(Fore.GREEN+"\nDoğru!"+Style.RESET_ALL)
-                save_stat(time_,word,dd[word],answer,True,2)
+                save_stat(time_,word,dd[word],answer,True,current_level)
             elif answer == "":
                 print(Fore.LIGHTRED_EX+f"Boş bırakıldı! Doğru cevap: {word}"+Style.RESET_ALL)
-                save_stat(time_,word,dd[word],"","blank",2)
+                save_stat(time_,word,dd[word],"","blank",current_level)
             elif answer.lower() == "exit":
                 os._exit(1)
             else:
                 print(Fore.RED+f"Yanlış! Doğru cevap: {word}"+Style.RESET_ALL)
-                save_stat(time_,word,dd[word],answer,False,2)    
+                save_stat(time_,word,dd[word],answer,False,current_level)    
+        
         if quiz_config.get("pronounce_words") == True:
             pronounce_word(word)
 
@@ -532,8 +545,7 @@ def main(quiz_config={}, legacy_start_menu=False,mode="play"):
                                 if data[1] not in words:
                                     words.append(data[1])
                         for word in words:
-                            amount_counter = 0
-                            correct_counter = 0
+                            amount_counter = correct_counter = 0
                             for line in lines[::-1]:
                                 data = line.strip().split(",")
                                 if len(data) >= 5 and data[1] == word:
@@ -559,7 +571,7 @@ def main(quiz_config={}, legacy_start_menu=False,mode="play"):
                 else:
                     question_amount = quiz_config["level_1_question_count"]
                 lg(known_words)
-                quest(question_amount=question_amount,wordlist=known_words,word_progression=word_progression,dd=dd,typer=typer,quiz_config=quiz_config)
+                quest(question_amount=question_amount,wordlist=known_words,word_progression=word_progression,dd=dd,typer=typer,quiz_config=quiz_config,current_level=1)
                 analytics("set",datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S"),start_time,"level_1_passed")
                 with open("statistics.csv", "r", encoding="UTF-8") as f:
                     correct_counter_ = wrong_counter_ = blank_counter_ = total_counter_ = 0
@@ -584,12 +596,18 @@ def main(quiz_config={}, legacy_start_menu=False,mode="play"):
                             total_counter_ += 1
                     f.close()
                 analytics_data = analytics("get",None,None,None)
-                daily_stat("set",correct_counter_,wrong_counter_,blank_counter_,total_counter_,1)
+                daily_stat("set",correct_counter_,wrong_counter_,blank_counter_,total_counter_,level=1)
                 if not DEBUG:
-                    try:
-                        ASCII.ASCII_LevelUp.main(f"{correct_counter_/total_counter_*100:.2f}",correct_counter_,total_counter_)
-                        cls()
-                    except:pass
+                    """ try: """
+                    ASCII.ASCII_LevelUp.main(f"{correct_counter_/total_counter_*100:.2f}",correct_counter_,total_counter_) if total_counter_ != 0 else ASCII.ASCII_LevelUp.main(f"0",correct_counter_,total_counter_)
+                    cls()
+                    from random import randint
+                    indx = randint(0,len(ASCII.Animations.video.get_files())+1)
+                    if indx > len(ASCII.Animations.video.get_files()):
+                        """ chose_ani() """
+                    else:
+                        ASCII.Animations.video.play(ASCII.Animations.video.get_files()[indx])
+                    """ except:print("HELP ME") """
             if analytics_data != []:
                 for data in analytics_data:
                     if data["type"] == "level_1_passed" and data["time_finish"].startswith(datetime.datetime.now().strftime("%Y-%m-%d")):
@@ -671,7 +689,7 @@ def main(quiz_config={}, legacy_start_menu=False,mode="play"):
                         question_amount = quiz_config["level_2_question_count"]
 
                     lg(unknown_words)
-                    quest(question_amount=question_amount,wordlist=unknown_words,word_progression=word_progression,dd=dd,typer=typer,quiz_config=quiz_config)
+                    quest(question_amount=question_amount,wordlist=unknown_words,word_progression=word_progression,dd=dd,typer=typer,quiz_config=quiz_config,current_level=1)
                     LEVEL_2_PASSED = True
                     analytics("set",datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S"),start_time,"level_2_passed")
                     """ daily_stat("set,") """
@@ -808,14 +826,16 @@ if __name__ == "__main__":
         else:c_ = ASCII.ASCII_start_menu.main()
         cls()
         leg = False
-        
+       
     except Exception as e:
         print(f"An error occurred in start_menu: {e}.\n\n Falling back to legacy start menu.")
         leg = True
         c_ = "play"
     cls()
-    main(legacy_start_menu=leg,mode=c_)
-
+    try:
+        main(legacy_start_menu=leg,mode=c_)
+    except KeyboardInterrupt:
+        print("Exiting the application")
 
 
 
