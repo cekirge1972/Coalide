@@ -63,7 +63,8 @@ def get_config(keys=None):
         },
         "general": {
             "spam_answer_proof": True,
-            "set_time_for_pc": True
+            "set_time_for_pc": True,
+            "set_time_for_tomorrow": False
         }
     }
 
@@ -130,7 +131,7 @@ def analytics(get_set,time_finish,time_start,type):
                         })
         return analytics_data
 
-def daily_stat(get_set, correct, wrong, blank, total,level):
+def daily_stat(get_set, correct, wrong, blank, total,level,time_elapsed):
     lg(f"daily_stat({get_set},{correct},{wrong},{blank},{total},{level})")
     if get_set == "get":
         if not os.path.exists("daily_stats.csv"):
@@ -143,9 +144,9 @@ def daily_stat(get_set, correct, wrong, blank, total,level):
             permission = "w"
         else: permission = "a"
         with open("daily_stats.csv",permission,encoding="UTF-8") as f:
-            f.write(f"{datetime.datetime.now().strftime("%Y-%m-%d")},{correct},{wrong},{blank},{total},{level}\n")
+            f.write(f"{datetime.datetime.now().strftime("%Y-%m-%d")},{correct},{wrong},{blank},{total},{level},{time_elapsed}\n")
             f.close()
-            return f"{datetime.datetime.now().strftime("%Y-%m-%d")},{correct},{wrong},{blank},{total},{level}"
+            return f"{datetime.datetime.now().strftime("%Y-%m-%d")},{correct},{wrong},{blank},{total},{level},{time_elapsed}"
 
 
 
@@ -333,7 +334,7 @@ def quest(question_amount, wordlist, word_progression, dd, typer, quiz_config, c
             if get_config(["general"])[0].get("spam_answer_proof"):
                 ss_time = time.time()
                 diff = 0
-            else: ss_time == None; diff = None
+            else: ss_time = None; diff = None
             if ss_time == None and diff == None:
                 answer = input(f"{i+1}. '{word}' ({type_of_word}) kelimesinin Türkçe karşılığı nedir? ")
             while ss_time != None and diff != None and diff < 2:
@@ -373,7 +374,7 @@ def quest(question_amount, wordlist, word_progression, dd, typer, quiz_config, c
             if get_config(["general"])[0].get("spam_answer_proof"):
                 ss_time = time.time()
                 diff = 0
-            else: ss_time == None; diff = None
+            else: ss_time = None; diff = None
             if ss_time == None and diff == None:
                 answer = input(f"{i+1}. '{dd[word]}' ({type_of_word}) kelimesinin İngilizce karşılığı nedir? ")
             while ss_time != None and diff != None and diff < 2:
@@ -619,6 +620,7 @@ def main(quiz_config={}, legacy_start_menu=False,mode="play"):
                 else:
                     question_amount = quiz_config["level_1_question_count"]
                 lg(known_words)
+                time_of_quiz_start_1 = time.time()
                 quest(question_amount=question_amount,wordlist=known_words,word_progression=word_progression,dd=dd,typer=typer,quiz_config=quiz_config,current_level=1)
                 analytics("set",datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S"),start_time,"level_1_passed")
                 if not os.path.exists("statistics.csv"):
@@ -646,7 +648,7 @@ def main(quiz_config={}, legacy_start_menu=False,mode="play"):
                             total_counter_ += 1
                     f.close()
                 analytics_data = analytics("get",None,None,None)
-                daily_stat("set",correct_counter_,wrong_counter_,blank_counter_,total_counter_,level=1)
+                daily_stat("set",correct_counter_,wrong_counter_,blank_counter_,total_counter_,level=1,time_elapsed=time.time()-time_of_quiz_start_1)
                 if not DEBUG:
                     """ try: """
                     ASCII.ASCII_LevelUp.main(f"{correct_counter_/total_counter_*100:.2f}",correct_counter_,total_counter_) if total_counter_ != 0 else ASCII.ASCII_LevelUp.main(f"0",correct_counter_,total_counter_)
@@ -739,7 +741,8 @@ def main(quiz_config={}, legacy_start_menu=False,mode="play"):
                         question_amount = quiz_config["level_2_question_count"]
 
                     lg(unknown_words)
-                    quest(question_amount=question_amount,wordlist=unknown_words,word_progression=word_progression,dd=dd,typer=typer,quiz_config=quiz_config,current_level=2)
+                    time_of_quiz_start_2 = time.time()
+                    quest(question_amount=question_amount,wordlist=unknown_words,word_progression=word_progression,dd=dd,typer=typer,quiz_config=quiz_config,current_level=2,time_elapsed=time.time()-time_of_quiz_start_2)
                     LEVEL_2_PASSED = True
                     analytics("set",datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S"),start_time,"level_2_passed")
                     """ daily_stat("set,") """
@@ -838,8 +841,13 @@ def main(quiz_config={}, legacy_start_menu=False,mode="play"):
                         lb2 = ""
                         for key, a in list(flb.items())[-20:]:
                             lb2 = f"{lb2}{key} -> %{a[2]} ({a[0]}/{a[1]})\n"
-                        
-                        telegram_text = f"📅 Günlük Analiz 📅 ({datetime.datetime.now().strftime("%d.%m.%Y")})\n\nPuan : %{puan:.2f}\nNet : {net:.2f}\n\n✅ Doğru : {o_[0]}\n❌ Yanlış : {o_[1]}\n⚪ Boş : {o_[2]}\n📝 Total Soru Sayısı : {o_[3]}\n\n🏆 Top 20 : \n\n{lb}\n📉 Worst 20 : \n\n{lb2}"
+                        tlist = []
+                        ttlist = []
+                        for ti in m_:
+                            tlist.append(datetime.datetime.fromtimestamp(int(ti[6])).strftime("%H:%M:%S"))
+                            ttlist.append(int(ti[6]))
+                        total_time = datetime.datetime.fromtimestamp(sum(ttlist)).strftime("%H:%M:%S")
+                        telegram_text = f"📅 Günlük Analiz 📅 ({datetime.datetime.now().strftime("%d.%m.%Y")})\n\nPuan : %{puan:.2f}\nNet : {net:.2f}\n\n✅ Doğru : {o_[0]}\n❌ Yanlış : {o_[1]}\n⚪ Boş : {o_[2]}\n📝 Total Soru Sayısı : {o_[3]}\nGeçen Toplam Süre : {total_time}\n\n🏆 Top 20 : \n\n{lb}\n📉 Worst 20 : \n\n{lb2}"
                         try:
                             with open("sent_tg_messages.json","r",encoding="UTF-8") as x:
                                 ddt = json.load(x)
@@ -863,7 +871,7 @@ def main(quiz_config={}, legacy_start_menu=False,mode="play"):
                                     h.close()
                         if DEBUG:
                             int(input(""))
-
+                        
                     time.sleep(3)
                     cls()
                     main(quiz_config=quiz_config)
@@ -1069,6 +1077,7 @@ def dummy_main(quiz_config={}, legacy_start_menu=False,mode="play"):
             else:
                 question_amount = quiz_config.get("dummy_question_count")
             lg(known_words)
+            time_of_quiz_start = time.time()
             quest(question_amount=question_amount,wordlist=list(dd.keys()),word_progression=word_progression,dd=dd,typer=typer,quiz_config=quiz_config,current_level=0)
             if not os.path.exists("statistics.csv"):
                 with open("statistics.csv","w",encoding="UTF-8") as f:f.close()
@@ -1094,9 +1103,9 @@ def dummy_main(quiz_config={}, legacy_start_menu=False,mode="play"):
                         else: blank_counter_ += 1
                         total_counter_ += 1
                 f.close()
-            daily_stat("set",correct_counter_,wrong_counter_,blank_counter_,total_counter_,level=0)
+            daily_stat("set",correct_counter_,wrong_counter_,blank_counter_,total_counter_,level=0,time_elapsed=time.time()-time_of_quiz_start)
         
-            for line in daily_stat("get",0,0,0,0,0)[::-1]:
+            for line in daily_stat("get",0,0,0,0,0,0)[::-1]:
                 """ print(line)
                 print(quiz_config.get("dummy_question_count"))
                 print(int(line.split(",")[4])) """
@@ -1169,8 +1178,8 @@ def dummy_main(quiz_config={}, legacy_start_menu=False,mode="play"):
                 lb2 = ""
                 for key, a in list(flb.items())[-20:]:
                     lb2 = f"{lb2}{key} -> %{a[2]} ({a[0]}/{a[1]})\n"
+                telegram_text = f"📅 Günlük Analiz 📅 ({datetime.datetime.now().strftime("%Y/%m/%d")})\n\nPuan : %{puan:.2f}\nNet : {net:.2f}\n\n✅ Doğru : {o_[0]}\n❌ Yanlış : {o_[1]}\n⚪ Boş : {o_[2]}\n📝 Total Soru Sayısı : {o_[3]}\n\n🏆 Top 20 : \n\n{lb}\n📉 Worst 20 : \n\n{lb2}"
                 if quiz_config.get("send_telegram_message"):
-                    telegram_text = f"📅 Günlük Analiz 📅 ({datetime.datetime.now().strftime("%Y/%m/%d")})\n\nPuan : %{puan:.2f}\nNet : {net:.2f}\n\n✅ Doğru : {o_[0]}\n❌ Yanlış : {o_[1]}\n⚪ Boş : {o_[2]}\n📝 Total Soru Sayısı : {o_[3]}\n\n🏆 Top 20 : \n\n{lb}\n📉 Worst 20 : \n\n{lb2}"
                     try:
                         with open("sent_tg_messages.json","r",encoding="UTF-8") as x:
                             ddt = json.load(x)
@@ -1194,26 +1203,55 @@ def dummy_main(quiz_config={}, legacy_start_menu=False,mode="play"):
                                 h.close()
                     if DEBUG:
                         int(input(""))
-                if get_config("general")[0].get("set_time_for_pc"):
-                    lg("set_time_for_pc is true")
+                if get_config(["general"])[0].get("set_time_for_pc"):
+                    lg("set_time_for_pc is tru1e")
                     ### Point, Minute Calculation and API posst to parental control ###
 
                     ### Minute calculation
                     minutes_to_add = o_[0]*60
 
                     ### Give the user info ###
-                    cls()
-                    print(f"{o_[0]} Doğru yaptınız bugün için {minutes_to_add} dakika ekleniyor..")
+                    if get_config(["general"])[0].get("set_time_for_tomorrow"):
+                        t = "yarın"
+                        date_val = datetime.date.today() + datetime.timedelta(days=1)
+                    else:t="bugün";date_val = datetime.date.today()
+                    date = date_val.strftime("%Y-%m-%d")
+                    try:
+                        with open("used_exceptions.csv","r",encoding="UTF-8") as f:
+                            lines = f.readlines()
+                            for line in lines[::-1]:
+                                print(line)
+                                if line.strip() == f"{date},{o_[0]},{minutes_to_add}":
+                                    already_registered = True
+                                    break
+                            else:raise
+                    except:already_registered=False
+                    if not already_registered:   
+                        cls()
+                        print(f"{o_[0]} Doğru yaptınız {t} için {minutes_to_add//60} dakika ekleniyor..")
 
-                    ### Send api post to parental control api to add exceptional time ###
-
-                    import parental_connection as pc
-                    base_url = os.getenv("PARENTAL_CONTROL_URL")
-                    ifn = pc.add_exceptional_time(base_url, "OVERALL", minutes_to_add)
-                    if "Queued" in ifn or "Success" in ifn: print("Dakikalarınız eklendi.")
-                    elif "Error" in ifn: print("Dakika eklenirken sorun oluştu!")
-                    else: print("Muhtemelen Dakikanız eklendi")
-                    
+                        ### Send api post to parental control api to add exceptional time ###
+                        from dotenv import load_dotenv
+                        load_dotenv()
+                        import parental_connection as pc
+                        base_url = os.getenv("PARENTAL_CONTROL_URL")
+                        if base_url == None:
+                            print("Hatalı .env dosyası! Dakika eklenemedi!!!")
+                        else:
+                            ifn = pc.add_exceptional_time(base_url, "OVERALL", minutes_to_add,date,f"{o_[0]} Doğru yaptığınız için")
+                            if 1 == ifn or '"status":"queued"' in str(ifn):
+                                print("Dakikalarınız eklendi.")
+                                if not os.path.exists("used_exceptions.csv"):
+                                    with open("used_exceptions.csv","w",encoding="UTF-8") as f:f.close()
+                                with open("used_exceptions.csv","a",encoding="UTF-8") as file:
+                                    file.write(f"{date},{o_[0]},{minutes_to_add}\n")
+                                    file.close()
+                            elif "Error" in str(ifn): print("Dakika eklenirken sorun oluştu!");print(str(ifn))
+                            else: print("Muhtemelen Dakikanız eklendi")
+                            print(f"\n{telegram_text}\n")
+                            input("Ana menüye dönmek için herhangi bir butona basınız.")
+                    else:
+                        print("Zaten süreniz eklenmiş!")
                 time.sleep(3)
                 cls()
                 dummy_main(quiz_config=quiz_config)

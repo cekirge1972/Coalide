@@ -2,7 +2,7 @@ import requests
 import json
 from datetime import datetime
 
-def add_exceptional_time(base_url, app_name, duration_seconds, exception_date=None):
+def add_exceptional_time(base_url, app_name, duration_seconds, exception_date=None,reason="Sebep belirtilmedi"):
     """
     Sends a POST request to the Secondary API to add an exception for a specific app.
     
@@ -23,7 +23,8 @@ def add_exceptional_time(base_url, app_name, duration_seconds, exception_date=No
     payload = {
         "app_name": app_name,
         "date": exception_date,
-        "extra_time": duration_seconds
+        "exception_time": duration_seconds,
+        "reason": reason
     }
     
     try:
@@ -39,10 +40,11 @@ def add_exceptional_time(base_url, app_name, duration_seconds, exception_date=No
         
         if response.status_code == 200 or response.status_code == 201:
             if result.get("status") == "queued":
-                return (f"⚠️ [Queued] Primary API offline. Request for {app_name} saved to buffer.")
+                """ return (f"⚠️ [Queued] Primary API offline. Request for {app_name} saved to buffer.") """
+                return 1
             else:
-                return (f"✅ [Success] Exception added for {app_name} on {exception_date}.")
-            """ return result """
+                """ return (f"✅ [Success] Exception added for {app_name} on {exception_date}.") """
+                return 1
         else:
             return (f"❌ [Error] Server returned status {response.status_code}: {response.text}")
             """ return None """

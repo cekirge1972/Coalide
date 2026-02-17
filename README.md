@@ -2,6 +2,7 @@
 A small Python project to help with English practice and reporting. Provides CLI/TUI helpers, data files for words/pronunciations, and scripts to generate reports (including Telegram integration).
 
 ## Future Features
+- [ ] Integration with parental controls
 - [ ] Multi-Language Support
 - [x] Show the words type (Noun or Verb) when asking questions
 - [x] Checking for bad audio files when downloading

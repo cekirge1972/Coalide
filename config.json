@@ -9,12 +9,13 @@
     },
     "dummy_mode": {
         "dummy_mode": true,
-        "dummy_question_count": 100,
+        "dummy_question_count": 10,
         "send_telegram_message": true,
         "pronounce_words": false
     },
     "general": {
-        "spam_answer_proof": true,
-        "set_time_for_pc": true
+        "spam_answer_proof": false,
+        "set_time_for_pc": true,
+        "set_time_for_tomorrow": false
     }
 }
