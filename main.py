@@ -94,6 +94,69 @@ def get_config(keys=None):
             
     return output
 
+import hashlib
+
+def check_and_update_words_csv(github_repo, github_token=None, local_file="words.csv"):
+    """
+    Check GitHub for updated words.csv and download if a newer version exists.
+    
+    Args:
+        github_repo: Format: "username/repo" (e.g., "your-username/your-repo")
+        github_token: Optional GitHub token for higher API rate limits
+        local_file: Local path to words.csv
+    
+    Returns:
+        True if file was updated, False otherwise
+    """
+    lg(f"check_and_update_words_csv({github_repo})")
+    
+    try:
+        import requests
+        
+        # GitHub raw content URL
+        raw_url = f"https://raw.githubusercontent.com/{github_repo}/main/words.csv"
+        
+        # Optional: Use GitHub API to get file info with headers
+        api_url = f"https://api.github.com/repos/{github_repo}/contents/words.csv"
+        headers = {}
+        if github_token:
+            headers["Authorization"] = f"token {github_token}"
+        
+        # Get remote file
+        response = requests.get(raw_url, timeout=10)
+        if response.status_code != 200:
+            print(f"❌ Could not fetch words.csv from GitHub: {response.status_code}")
+            return False
+        
+        remote_content = response.text
+        
+        # Check if local file exists
+        if os.path.exists(local_file):
+            with open(local_file, 'r', encoding="UTF-8") as f:
+                local_content = f.read()
+            
+            # Compare file hashes
+            local_hash = hashlib.md5(local_content.encode()).hexdigest()
+            remote_hash = hashlib.md5(remote_content.encode()).hexdigest()
+            
+            if local_hash == remote_hash:
+                lg("✓ words.csv is up to date")
+                return False
+            else:
+                lg("⚠ Newer version of words.csv found on GitHub")
+        
+        # Write updated file
+        with open(local_file, 'w', encoding="UTF-8") as f:
+            f.write(remote_content)
+            f.close()
+        
+        lg(f"✓ Updated words.csv from GitHub")
+        return True
+        
+    except Exception as e:
+        lg(f"⚠ Error checking GitHub for updates: {e}")
+        return False
+
 def set_config(ukey, key, value):
     lg(f"set_config({ukey},{key},{value})")
     config = get_config()
@@ -1374,7 +1437,7 @@ def dummy_main(quiz_config={}, legacy_start_menu=False,mode="play"):
 
 if __name__ == "__main__":  
     lg("Starting...")
-
+    lg(f"sys.argv: {sys.argv}\nPython version: {sys.version}\nPlatform: {sys.platform}")
     try:
         if "-debug" in sys.argv:
             c_ = ASCII.ASCII_start_menu.main(debug=True)
@@ -1388,6 +1451,8 @@ if __name__ == "__main__":
         c_ = "play"
     cls()
     try:
+        lg("Checking for words.csv updates...")
+        check_and_update_words_csv("cekirge1972/Coalide")
         print(get_config(["dummy_mode"]))
         if not get_config(["dummy_mode"])[0].get("dummy_mode"):
             main(legacy_start_menu=leg,mode=c_)
