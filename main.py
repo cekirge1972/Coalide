@@ -1452,7 +1452,7 @@ if __name__ == "__main__":
     cls()
     try:
         lg("Checking for words.csv updates...")
-        check_and_update_words_csv("cekirge1972/Coalide")
+        check_and_update_words_csv("MelihAydinYanibol/Coalide")
         print(get_config(["dummy_mode"]))
         if not get_config(["dummy_mode"])[0].get("dummy_mode"):
             main(legacy_start_menu=leg,mode=c_)
