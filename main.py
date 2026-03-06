@@ -1329,6 +1329,7 @@ def dummy_main(quiz_config={}, legacy_start_menu=False,mode="play"):
                 
             if LEVEL_0_PASSED:
                 print("Tebrikler! Dummy modunu tamamladığınız tespit edildi!")
+
                 m_ = []
                 with open("daily_stats.csv", "r", encoding="UTF-8") as fg:
                     liness = fg.readlines()
@@ -1337,15 +1338,8 @@ def dummy_main(quiz_config={}, legacy_start_menu=False,mode="play"):
                             m_.append(line)
                     fg.close()
                 o_ = []
-                if len(m_) == 2:
-                    for i in range(1,5):
-                        ox = 0
-                        for x in m_:
-                            ox += int(x.split(",")[i])
-                        o_.append(ox)
-                else:
-                    for i in range(1,5):
-                        o_.append(int(m_[0].split(",")[i]))
+                for i in range(1,5):
+                    o_.append(int(m_[0].split(",")[i]))
                 lg(o_)
                 print("Sending Report.")
                 if o_[0] == 0: puan = 0; net=0
