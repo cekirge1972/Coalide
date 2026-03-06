@@ -40,7 +40,7 @@ def cls():
 def backup_data():
     """
     Backs up important data files to a folder in the user's home directory.
-    Creates a timestamped backup folder under ~/.ProjectEnglish_Backups/.
+    Creates a timestamped backup folder under ~/ProjectEnglish_Backups/.
     """
     lg("backup_data()")
     
@@ -1291,23 +1291,6 @@ def dummy_main(quiz_config={}, legacy_start_menu=False,mode="play"):
                 question_amount = quiz_config.get("dummy_question_count")
             lg(known_words)
             time_of_quiz_start = time.time()
-            
-            # Count stats BEFORE the session to track only new ones
-            pre_session_correct = pre_session_wrong = pre_session_blank = pre_session_total = 0
-            if os.path.exists("statistics.csv"):
-                with open("statistics.csv", "r", encoding="UTF-8") as f:
-                    lines = f.readlines()
-                    for line in lines:
-                        if datetime.datetime.now().strftime("%Y-%m-%d") in line and line.split(",")[5].strip() == "0":
-                            if line.split(",")[4] == "True":
-                                pre_session_correct += 1
-                            elif line.split(",")[4] == "False":
-                                pre_session_wrong += 1
-                            else:
-                                pre_session_blank += 1
-                            pre_session_total += 1
-                    f.close()
-            
             quest(question_amount=question_amount,wordlist=list(dd.keys()),word_progression=word_progression,dd=dd,typer=typer,quiz_config=quiz_config,current_level=0)
             if not os.path.exists("statistics.csv"):
                 with open("statistics.csv","w",encoding="UTF-8") as f:f.close()
@@ -1333,13 +1316,7 @@ def dummy_main(quiz_config={}, legacy_start_menu=False,mode="play"):
                         else: blank_counter_ += 1
                         total_counter_ += 1
                 f.close()
-            
-            # Calculate only the stats added in THIS session
-            session_correct = correct_counter_ - pre_session_correct
-            session_wrong = wrong_counter_ - pre_session_wrong
-            session_blank = blank_counter_ - pre_session_blank
-            session_total = total_counter_ - pre_session_total
-            daily_stat("set",session_correct,session_wrong,session_blank,session_total,level=0,time_elapsed=time.time()-time_of_quiz_start)
+            daily_stat("set",correct_counter_,wrong_counter_,blank_counter_,total_counter_,level=0,time_elapsed=time.time()-time_of_quiz_start)
         
             for line in daily_stat("get",0,0,0,0,0,0)[::-1]:
                 """ print(line)
@@ -1360,11 +1337,15 @@ def dummy_main(quiz_config={}, legacy_start_menu=False,mode="play"):
                             m_.append(line)
                     fg.close()
                 o_ = []
-                for i in range(1,5):
-                    ox = 0
-                    for x in m_:
-                        ox += int(x.split(",")[i])
-                    o_.append(ox)
+                if len(m_) == 2:
+                    for i in range(1,5):
+                        ox = 0
+                        for x in m_:
+                            ox += int(x.split(",")[i])
+                        o_.append(ox)
+                else:
+                    for i in range(1,5):
+                        o_.append(int(m_[0].split(",")[i]))
                 lg(o_)
                 print("Sending Report.")
                 if o_[0] == 0: puan = 0; net=0
