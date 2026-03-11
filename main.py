@@ -18,28 +18,8 @@ import sys
 import copy
 from colorama import Fore, Back, Style, init
 import hashlib
+import re
 init(autoreset=True)
-if sys.argv[1:]:
-    if "-pack-data" in sys.argv[1]:
-        static_files = [
-            "statistics.csv",
-            "daily_stats.csv",
-            "analytics.csv",
-            "words.csv",
-            "config.json",
-            "sent_tg_messages.json",
-            ".env",
-        ]
-        if not os.path.exists("packaged_data"):
-            os.makedirs("packaged_data")
-        else:
-            shutil.rmtree("packaged_data")
-            os.makedirs("packaged_data")
-        for file in static_files:
-            if os.path.exists(file):
-                shutil.copy2(file, os.path.join("packaged_data", file))
-        print("Data files have been packaged into the 'packaged_data' folder. Exiting...")
-        sys.exit(0)
 
 # Load .env file variables into os.environ before any function uses them
 try:
@@ -385,8 +365,10 @@ def daily_stat(get_set, correct, wrong, blank, total,level,time_elapsed):
             return f"{datetime.datetime.now().strftime("%Y-%m-%d")},{correct},{wrong},{blank},{total},{level},{time_elapsed}"
 
 
+def safe_filename(name: str) -> str:
+    # Windows-forbidden chars: <>:"/\|?*
+    return re.sub(r'[<>:"/\\|?*]', "_", name).strip(" .")
 
-# words.csv --> comma seperate values
 
 def load_words(file_path):
     lg(f"load_words({file_path})")
@@ -471,7 +453,7 @@ def elabs_get_audio(word,language="en",t=1):
         os.makedirs(f"pronunciations")
 
     # Save the stream to a file (lowercase for consistent cache lookup)
-    filename = os.path.join("pronunciations", f"{word.lower()}.mp3")
+    filename = os.path.join("pronunciations", f"{safe_filename(word.lower())}.mp3")
     with open(filename, "wb") as f:
         for chunk in audio_generator:
             if chunk:
@@ -512,7 +494,7 @@ def get_audio(word,lang_="en",t=1,server="11",sentence=False):
         filename = None
         if os.environ.get("ELEVENLABS_API_KEY","hi") and server == "11":
             try:
-                filename = elabs_get_audio(word, language, t)
+                filename = (elabs_get_audio(word, language, t))
             except Exception as e:
                 lg(f"Error generating audio with ElevenLabs: {e}")
                 if t != 3:
@@ -525,7 +507,7 @@ def get_audio(word,lang_="en",t=1,server="11",sentence=False):
         # Generate audio using gTTS
             tts = gTTS(text=word, lang=language)
             os.makedirs("pronunciations", exist_ok=True)
-            filename = f"pronunciations/{word.lower()}.mp3"
+            filename = f"pronunciations/{safe_filename(word.lower())}.mp3"
             tts.save(filename)
         if not filename:
             return None
@@ -655,7 +637,8 @@ def pronounce_word(word, lang_="en",sentence=False):
     lg(f"pronounce_word({word},{lang_})")
     files = get_folder("pronunciations")
     for file in files:
-        if file.lower() == f"{word.lower()}.mp3":
+        file = safe_filename(file)
+        if file.lower() == f"{safe_filename(word.lower())}.mp3":
             lg(f"Playing existing pronunciation for '{word}'.")
             play_audio(os.path.join("pronunciations", file))
             return
@@ -1729,6 +1712,105 @@ def dummy_main(quiz_config={}, legacy_start_menu=False,mode="play"):
                 
                 """ dummy_main(quiz_config=quiz_config) """
 
+
+if sys.argv[1:]:
+    if "-pack-data" in sys.argv[1:]:
+        if "--help" in sys.argv[2:]:
+            print("Usage: -pack-data\nThis command packages important data files into a 'packaged_data' folder for backup. It collects files such as 'statistics.csv', 'daily_stats.csv', 'analytics.csv', 'words.csv', 'config.json', and 'sent_tg_messages.json' and copies them into a new folder named 'packaged_data'. If the folder already exists, it will be cleared before copying the files. This is useful for creating a backup of your data or transferring it to another location.")
+            sys.exit(0)
+        static_files = [
+            "statistics.csv",
+            "daily_stats.csv",
+            "analytics.csv",
+            "words.csv",
+            "config.json",
+            "sent_tg_messages.json",
+            ".env",
+        ]
+        if not os.path.exists("packaged_data"):
+            os.makedirs("packaged_data")
+        else:
+            shutil.rmtree("packaged_data")
+            os.makedirs("packaged_data")
+        for file in static_files:
+            if os.path.exists(file):
+                shutil.copy2(file, os.path.join("packaged_data", file))
+        print("Data files have been packaged into the 'packaged_data' folder. Exiting...")
+        sys.exit(0)
+    elif "-create-tts-cache" in sys.argv[1:]:
+        if "--help" in sys.argv[2:]:
+            print("Usage: -create-tts-cache [options]\nThis command generates a TTS cache for words and sentences. It checks for existing audio files in the 'pronunciations' folder and generates missing ones based on the entries in 'words.csv'.\n\nOptions:\n-gtts : Use Google Text-to-Speech for audio generation (default is ElevenLabs)\n-all : Generate TTS for both words and sentences (default)\n-words : Generate TTS only for words\n-sentences : Generate TTS only for sentences\n-force : Force regeneration of all TTS files by clearing the existing cache")
+            sys.exit(0)
+        mode = "11"
+        job = force = None
+        if sys.argv[2:]:
+            if "-gtts" in str(sys.argv[2:]).lower(): mode = "gtts"
+            else: mode = "11"
+            if "-all" in str(sys.argv[2:]).lower(): job = "all"
+            elif "-words" in str(sys.argv[2:]).lower(): job = "words"
+            elif "-sentences" in str(sys.argv[2:]).lower(): job = "sentences"
+            else: job = "all"
+            if "-force" in str(sys.argv[2:]).lower(): force = True
+            else: force = False
+        
+        if force:
+            shutil.rmtree("pronunciations")
+            os.makedirs("pronunciations") 
+        words,typer = load_words('words.csv')
+        """ print(typer[0]) """
+        all_words = set()
+        all_sentences = set()
+        i = 0
+        for word_dict in words:
+            i = i + 1
+            key = next(iter(word_dict.keys()))
+            try: sh = typer[i-1].get(key)[2][1]
+            except: sh = ""
+            sentence = f"{typer[i-1].get(key)[2][0]} {key} {sh}"
+            if not os.path.exists(f"pronunciations/{safe_filename(key)}.mp3"):
+                all_words.add(key)
+            if not os.path.exists(f"pronunciations/{safe_filename(sentence)}.mp3"):
+                all_sentences.add(sentence)
+        
+        print(f"Generating TTS cache for",end="")
+        if job == "words": print(f"{len(all_words)} words")
+        elif job == "sentences": print(f"{len(all_sentences)} sentences")
+        else: print(f"{len(all_words)} words and {len(all_sentences)} sentences")
+        print(f"Using mode : {mode}")
+        print("This process may take a while depending on the number of words/sentences to generate and the TTS mode selected. Please wait...")
+        print("Generating words..." if job != "sentences" else "Generating sentences...")
+        if job != "sentences":
+            i = 1
+            for word in all_words:
+                print(f"[{i}/{len(all_words)} (%{i/len(all_words)*100:.2f})] Generating TTS for word: {word}")
+                get_audio(word,lang_="en",server=mode)
+                i = i + 1
+        if job != "words":
+            print("\n\n All words generated! Now generating sentences...\n")
+            i = 1
+            for sentence in all_sentences:
+                print(f"[{i}/{len(all_sentences)} (%{i/len(all_sentences)*100:.2f})] Generating TTS for sentence: {sentence}")
+                get_audio(sentence,lang_="en",server=mode,sentence=True)
+                i = i + 1
+            print("TTS cache generation complete. Exiting...")
+        sys.exit(0)
+    elif "-create-daily-stats" in sys.argv[1:]:
+        if sys.argv[2:]:
+            if "--help" in sys.argv[2:]:
+                print("Usage: -create-daily-stats\nThis command creates or updates daily stats based on today's quiz performance. It reads today's quiz results from 'statistics.csv', calculates the number of correct, wrong, blank, and total answers, and then saves this data to 'daily_stats.csv'.")
+                sys.exit(0)
+        from Manuals import Create_daily_stats_manually as cdsm
+        cdsm.main()
+        print("Daily stats have been created/updated. Exiting...")
+        sys.exit(0)
+    elif "-help" in sys.argv[1]:
+        print("Available command-line arguments:")
+        print("- -pack-data: Packages important data files into a 'packaged_data' folder for backup.")
+        print("- -create-tts-cache: Generates TTS cache for words and sentences. Use with additional flags to specify details.")
+        print("- -create-daily-stats: Creates or updates daily stats based on today's quiz performance.")
+        print("- -debug: Enables debug mode for more verbose output and legacy start menu.")
+        print("\nFor detailed instructions on using each argument, please refer to the documentation or use the '-help' flag with the specific argument.")
+        sys.exit(0)
 
 if __name__ == "__main__":  
     lg("Starting...")
