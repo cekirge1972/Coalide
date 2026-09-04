@@ -33,7 +33,7 @@
         "language": "en",
         "word_type": "adjective",
         "sentence": [
-            "you are",
+            "You are",
             ""
         ],
         "target": "beautiful",
@@ -461,7 +461,7 @@
         "word_type": "verb",
         "sentence": [
             "What does this word",
-            "?"
+            ""
         ],
         "target": "mean",
         "past": "meant",
@@ -808,6 +808,7 @@
         "past": "stood",
         "v3": "stood",
         "source": [
+            "ayağa kalkmak",
             "ayakta durmak"
         ],
         "next_review_date": null
@@ -1447,7 +1448,7 @@
         "word_type": "verb",
         "sentence": [
             "Please",
-            "to headquarters"
+            "the accident to the police"
         ],
         "target": "report",
         "past": "reported",
@@ -1953,8 +1954,8 @@
         "past": "",
         "v3": "",
         "source": [
-            "soğan",
-            "soğanlar"
+            "soğanlar",
+            "soğan"
         ],
         "next_review_date": null
     },
@@ -2227,6 +2228,7 @@
         "past": "",
         "v3": "",
         "source": [
+            "gazlı içecek",
             "gazoz"
         ],
         "next_review_date": null
@@ -2333,6 +2335,7 @@
         "past": "",
         "v3": "",
         "source": [
+            "diş hekimi",
             "dişçi"
         ],
         "next_review_date": null
@@ -2728,7 +2731,8 @@
         "v3": "",
         "source": [
             "ayrıca",
-            "de/da"
+            "de",
+            "da"
         ],
         "next_review_date": null
     },
@@ -3062,8 +3066,8 @@
         "past": "",
         "v3": "",
         "source": [
-            "-de/-da",
-            "de/da"
+            "-de",
+            "-da"
         ],
         "next_review_date": null
     },
@@ -3422,7 +3426,7 @@
         "language": "en",
         "word_type": "adjective",
         "sentence": [
-            "You are the",
+            "You are my",
             "friend"
         ],
         "target": "best",
@@ -3647,8 +3651,8 @@
         "language": "en",
         "word_type": "noun",
         "sentence": [
-            "Wear your",
-            "in winter"
+            "This leather",
+            "is too tight for me"
         ],
         "target": "boot",
         "past": "",
@@ -3866,7 +3870,8 @@
         "past": "",
         "v3": "",
         "source": [
-            "iş"
+            "iş",
+            "işletme"
         ],
         "next_review_date": null
     },
@@ -4333,8 +4338,8 @@
         "past": "",
         "v3": "",
         "source": [
-            "sınıf",
-            "ders"
+            "ders",
+            "sınıf"
         ],
         "next_review_date": null
     },
@@ -5267,7 +5272,8 @@
         "past": "",
         "v3": "",
         "source": [
-            "detay/ayrıntı"
+            "detay",
+            "ayrıntı"
         ],
         "next_review_date": null
     },
@@ -5777,6 +5783,7 @@
         "past": "enjoyed",
         "v3": "enjoyed",
         "source": [
+            "keyif almak",
             "keyfini çıkarmak"
         ],
         "next_review_date": null
@@ -6316,7 +6323,7 @@
         "language": "en",
         "word_type": "number",
         "sentence": [
-            "He won the",
+            "He finished in",
             "place"
         ],
         "target": "fifth",
@@ -6777,8 +6784,8 @@
         "past": "",
         "v3": "",
         "source": [
-            "-den/-dan",
-            "dan/den"
+            "-den",
+            "-dan"
         ],
         "next_review_date": null
     },
@@ -7021,8 +7028,9 @@
         "past": "",
         "v3": "",
         "source": [
-            "büyükanne",
-            "büyükbaba"
+            "büyükanne veya büyükbaba",
+            "büyükanne ya da büyükbaba",
+            "büyük ebeveyn"
         ],
         "next_review_date": null
     },
@@ -7334,7 +7342,7 @@
         "word_type": "adverb",
         "sentence": [
             "Come",
-            ", sit down"
+            "and sit down"
         ],
         "target": "here",
         "past": "",
@@ -8730,7 +8738,7 @@
         "word_type": "pronoun",
         "sentence": [
             "Can you help",
-            "?"
+            ""
         ],
         "target": "me",
         "past": "",
@@ -8821,7 +8829,7 @@
         "word_type": "noun",
         "sentence": [
             "Can I see the",
-            "?"
+            ""
         ],
         "target": "menu",
         "past": "",
@@ -9248,7 +9256,8 @@
         "past": "",
         "v3": "",
         "source": [
-            "-meli/-malı",
+            "-meli",
+            "-malı",
             "zorunda olmak"
         ],
         "next_review_date": null
@@ -9273,7 +9282,7 @@
         "word_type": "noun",
         "sentence": [
             "What is your",
-            "?"
+            ""
         ],
         "target": "name",
         "past": "",
@@ -9439,8 +9448,8 @@
         "language": "en",
         "word_type": "adjective",
         "sentence": [
-            "That's a",
-            "day"
+            "It is a",
+            "day today"
         ],
         "target": "nice",
         "past": "",
@@ -9665,7 +9674,7 @@
         "word_type": "noun",
         "sentence": [
             "What is your phone",
-            "?"
+            ""
         ],
         "target": "number",
         "past": "",
@@ -9746,8 +9755,8 @@
         "past": "",
         "v3": "",
         "source": [
-            "-nin/-nın",
-            "nin"
+            "-nin",
+            "-nın"
         ],
         "next_review_date": null
     },
@@ -9837,6 +9846,7 @@
         "past": "",
         "v3": "",
         "source": [
+            "yaşlı",
             "eski"
         ],
         "next_review_date": null
@@ -10163,7 +10173,7 @@
         "word_type": "noun",
         "sentence": [
             "Can I borrow a piece of",
-            "?"
+            ""
         ],
         "target": "paper",
         "past": "",
@@ -10229,6 +10239,8 @@
         "past": "",
         "v3": "",
         "source": [
+            "kısım",
+            "bölüm",
             "parça"
         ],
         "next_review_date": null
@@ -10253,7 +10265,7 @@
         "word_type": "noun",
         "sentence": [
             "Are you coming to my birthday",
-            "?"
+            ""
         ],
         "target": "party",
         "past": "",
@@ -10343,7 +10355,7 @@
         "word_type": "noun",
         "sentence": [
             "Can you pass the salt and",
-            "?"
+            ""
         ],
         "target": "pepper",
         "past": "",
@@ -10463,7 +10475,7 @@
         "word_type": "noun",
         "sentence": [
             "How do you pronounce this",
-            "?"
+            ""
         ],
         "target": "phrase",
         "past": "",
@@ -10814,7 +10826,7 @@
         "word_type": "exclamation",
         "sentence": [
             "Can you help me,",
-            "?"
+            ""
         ],
         "target": "please",
         "past": "",
@@ -11996,8 +12008,8 @@
         "past": "",
         "v3": "",
         "source": [
-            "başlıca",
-            "birinci sınıf"
+            "birinci sınıf",
+            "gözde"
         ],
         "next_review_date": null
     },
@@ -12151,7 +12163,7 @@
         "past": "",
         "v3": "",
         "source": [
-            "mahkûm",
+            "mahkum",
             "tutuklu"
         ],
         "next_review_date": null
@@ -12396,7 +12408,8 @@
         "past": "",
         "v3": "",
         "source": [
-            "kâr"
+            "kazanç",
+            "kar"
         ],
         "next_review_date": null
     },
@@ -12974,7 +12987,7 @@
         "word_type": "noun",
         "sentence": [
             "May I ask you a",
-            "?"
+            ""
         ],
         "target": "question",
         "past": "",
@@ -14918,7 +14931,7 @@
         "v3": "",
         "source": [
             "ödül",
-            "mükâfat"
+            "mükafat"
         ],
         "next_review_date": null
     },
@@ -15275,7 +15288,7 @@
         "past": "",
         "v3": "",
         "source": [
-            "güzergâh",
+            "güzergah",
             "rota"
         ],
         "next_review_date": null
@@ -16258,8 +16271,8 @@
         "past": "",
         "v3": "",
         "source": [
-            "seçki",
-            "seçim"
+            "seçim",
+            "çeşit"
         ],
         "next_review_date": null
     },
@@ -16904,7 +16917,7 @@
         "language": "en",
         "word_type": "noun",
         "sentence": [
-            "The travellers looked for",
+            "The travelers looked for",
             "from the rain"
         ],
         "target": "shelter",
@@ -17053,7 +17066,7 @@
         "past": "",
         "v3": "",
         "source": [
-            "dükkân",
+            "dükkan",
             "mağaza"
         ],
         "next_review_date": null
@@ -17115,7 +17128,8 @@
         "past": "",
         "v3": "",
         "source": [
-            "-meli/-malı"
+            "-meli",
+            "-malı"
         ],
         "next_review_date": null
     },
@@ -17572,8 +17586,8 @@
         "language": "en",
         "word_type": "noun",
         "sentence": [
-            "Good morning,",
-            ", how can I help you?"
+            "Good morning",
+            "how can I help you"
         ],
         "target": "sir",
         "past": "",
@@ -18406,7 +18420,8 @@
         "past": "",
         "v3": "",
         "source": [
-            "oğul"
+            "oğul",
+            "erkek evlat"
         ],
         "next_review_date": null
     },
@@ -19305,7 +19320,8 @@
         "past": "",
         "v3": "",
         "source": [
-            "hâlâ"
+            "halen",
+            "hala"
         ],
         "next_review_date": null
     },
@@ -19367,7 +19383,7 @@
         "v3": "",
         "source": [
             "mağaza",
-            "dükkân"
+            "dükkan"
         ],
         "next_review_date": null
     },
@@ -19397,7 +19413,7 @@
         "past": "",
         "v3": "",
         "source": [
-            "hikâye",
+            "hikaye",
             "öykü"
         ],
         "next_review_date": null
@@ -20577,7 +20593,7 @@
         "v3": "",
         "source": [
             "masal",
-            "hikâye"
+            "hikaye"
         ],
         "next_review_date": null
     },
@@ -21894,8 +21910,8 @@
         "language": "en",
         "word_type": "noun",
         "sentence": [
-            "Where is the",
-            ", please?"
+            "Please tell me where the",
+            "is"
         ],
         "target": "toilet",
         "past": "",
@@ -22694,7 +22710,7 @@
         "word_type": "adjective",
         "sentence": [
             "Is this story really",
-            "?"
+            ""
         ],
         "target": "true",
         "past": "",
@@ -23835,7 +23851,7 @@
         "language": "en",
         "word_type": "noun",
         "sentence": [
-            "Carrot is my favorite",
+            "The carrot is my favorite",
             ""
         ],
         "target": "vegetable",
@@ -23873,7 +23889,7 @@
         "past": "",
         "v3": "",
         "source": [
-            "mekân"
+            "mekan"
         ],
         "next_review_date": null
     },
@@ -24638,7 +24654,7 @@
         "word_type": "verb",
         "sentence": [
             "How much do these apples",
-            "?"
+            ""
         ],
         "target": "weigh",
         "past": "weighed",
@@ -25141,7 +25157,7 @@
         "past": "",
         "v3": "",
         "source": [
-            "rüzgâr"
+            "rüzgar"
         ],
         "next_review_date": null
     },
@@ -25614,7 +25630,7 @@
         "word_type": "exclamation",
         "sentence": [
             "",
-            ", what a beautiful garden!"
+            "what a beautiful garden"
         ],
         "target": "wow",
         "past": "",
@@ -25707,7 +25723,7 @@
         "word_type": "exclamation",
         "sentence": [
             "",
-            ", I think you are right"
+            "I think you are right"
         ],
         "target": "yeah",
         "past": "",
@@ -25863,7 +25879,7 @@
         "word_type": "pronoun",
         "sentence": [
             "Did you make this cake",
-            "?"
+            ""
         ],
         "target": "yourself",
         "past": "",
@@ -26030,7 +26046,7 @@
         "word_type": "noun",
         "sentence": [
             "Would you like a cold",
-            "?"
+            ""
         ],
         "target": "drink",
         "past": "",
@@ -26159,8 +26175,8 @@
         "past": "",
         "v3": "",
         "source": [
-            "muktedir",
-            "yapabilen"
+            "yapabilen",
+            "muktedir"
         ],
         "next_review_date": null
     },
@@ -26386,7 +26402,7 @@
         "word_type": "exclamation",
         "sentence": [
             "",
-            ", now I understand the problem!"
+            "now I understand the problem"
         ],
         "target": "ah",
         "past": "",
@@ -27263,8 +27279,8 @@
         "past": "",
         "v3": "",
         "source": [
-            "parça",
-            "birazcık"
+            "birazcık",
+            "parça"
         ],
         "next_review_date": null
     },
@@ -27435,7 +27451,7 @@
         "past": "",
         "v3": "",
         "source": [
-            "kâse"
+            "kase"
         ],
         "next_review_date": null
     },
@@ -28368,7 +28384,7 @@
         "past": "complained",
         "v3": "complained",
         "source": [
-            "şikâyet etmek"
+            "şikayet etmek"
         ],
         "next_review_date": null
     },
@@ -29696,7 +29712,7 @@
         "v3": "",
         "source": [
             "son",
-            "sonuç"
+            "bitiş"
         ],
         "next_review_date": null
     },
@@ -29848,8 +29864,8 @@
         "past": "",
         "v3": "",
         "source": [
-            "deneme",
-            "kompozisyon"
+            "kompozisyon",
+            "deneme"
         ],
         "next_review_date": null
     },
@@ -30407,7 +30423,7 @@
         "language": "en",
         "word_type": "verb",
         "sentence": [
-            "These trousers do not",
+            "These pants do not",
             "me anymore"
         ],
         "target": "fit",
@@ -30538,7 +30554,7 @@
         "past": "",
         "v3": "",
         "source": [
-            "resmî"
+            "resmi"
         ],
         "next_review_date": null
     },
@@ -31380,7 +31396,7 @@
         "past": "",
         "v3": "",
         "source": [
-            "imkânsız"
+            "imkansız"
         ],
         "next_review_date": null
     },
@@ -31502,7 +31518,7 @@
         "past": "",
         "v3": "",
         "source": [
-            "resmî olmayan",
+            "resmi olmayan",
             "samimi"
         ],
         "next_review_date": null
@@ -31752,8 +31768,9 @@
         "past": "",
         "v3": "",
         "source": [
-            "madde",
-            "parça"
+            "ürün",
+            "parça",
+            "madde"
         ],
         "next_review_date": null
     },
@@ -32478,8 +32495,8 @@
         "past": "marked",
         "v3": "marked",
         "source": [
-            "işaretlemek",
-            "not vermek"
+            "not vermek",
+            "işaretlemek"
         ],
         "next_review_date": null
     },
@@ -32924,7 +32941,7 @@
         "v3": "",
         "source": [
             "ulusal",
-            "millî"
+            "milli"
         ],
         "next_review_date": null
     },
@@ -33170,8 +33187,8 @@
         "past": "",
         "v3": "",
         "source": [
-            "fındık",
-            "kuruyemiş"
+            "kuruyemiş",
+            "fındık"
         ],
         "next_review_date": null
     },
@@ -35505,7 +35522,7 @@
         "past": "",
         "v3": "",
         "source": [
-            "şikâyet"
+            "şikayet"
         ],
         "next_review_date": null
     },
@@ -36006,7 +36023,7 @@
         "v3": "",
         "source": [
             "şu anda",
-            "hâlihazırda"
+            "halihazırda"
         ],
         "next_review_date": null
     },
@@ -36037,7 +36054,7 @@
         "v3": "",
         "source": [
             "gelenek",
-            "âdet"
+            "adet"
         ],
         "next_review_date": null
     },
@@ -37368,14 +37385,14 @@
         "word_type": "noun",
         "sentence": [
             "Can you do me a small",
-            "?"
+            ""
         ],
         "target": "favor",
         "past": "",
         "v3": "",
         "source": [
             "iyilik",
-            "ricada bulunma"
+            "lütuf"
         ],
         "next_review_date": null
     },
@@ -38257,7 +38274,7 @@
         "past": "",
         "v3": "",
         "source": [
-            "tarihî"
+            "tarihi"
         ],
         "next_review_date": null
     },
@@ -38633,7 +38650,7 @@
         "v3": "",
         "source": [
             "kapalı",
-            "iç mekân"
+            "iç mekan"
         ],
         "next_review_date": null
     },
@@ -38744,7 +38761,7 @@
         "past": "",
         "v3": "",
         "source": [
-            "zekâ"
+            "zeka"
         ],
         "next_review_date": null
     },
@@ -39805,7 +39822,7 @@
         "v3": "",
         "source": [
             "açık",
-            "aşikâr"
+            "aşikar"
         ],
         "next_review_date": null
     },
@@ -39884,7 +39901,7 @@
         "past": "",
         "v3": "",
         "source": [
-            "resmî"
+            "resmi"
         ],
         "next_review_date": null
     },
@@ -39979,7 +39996,8 @@
         "past": "",
         "v3": "",
         "source": [
-            "-meli/-malı"
+            "-meli",
+            "-malı"
         ],
         "next_review_date": null
     },
@@ -40010,7 +40028,7 @@
         "v3": "",
         "source": [
             "açık hava",
-            "dış mekân"
+            "dış mekan"
         ],
         "next_review_date": null
     },
@@ -40712,7 +40730,7 @@
         "v3": "",
         "source": [
             "belli",
-            "aşikâr"
+            "aşikar"
         ],
         "next_review_date": null
     },
@@ -41946,7 +41964,7 @@
         "past": "",
         "v3": "",
         "source": [
-            "muhafazakâr",
+            "muhafazakar",
             "tutucu"
         ],
         "next_review_date": null
@@ -42334,7 +42352,7 @@
         "word_type": "noun",
         "sentence": [
             "The film",
-            "wrote a hard review"
+            "wrote a harsh review"
         ],
         "target": "critic",
         "past": "",
@@ -42766,7 +42784,7 @@
         "past": "denied",
         "v3": "denied",
         "source": [
-            "inkâr etmek",
+            "inkar etmek",
             "reddetmek"
         ],
         "next_review_date": null
@@ -42937,7 +42955,7 @@
         "v3": "",
         "source": [
             "dürüst olmayan",
-            "sahtekâr"
+            "sahtekar"
         ],
         "next_review_date": null
     },
@@ -43061,7 +43079,7 @@
         "past": "dominated",
         "v3": "dominated",
         "source": [
-            "hâkim olmak",
+            "hakim olmak",
             "egemen olmak"
         ],
         "next_review_date": null
@@ -43773,7 +43791,7 @@
         "word_type": "noun",
         "sentence": [
             "I have great",
-            "in your judgement"
+            "in your judgment"
         ],
         "target": "faith",
         "past": "",
@@ -45674,7 +45692,7 @@
         "past": "",
         "v3": "",
         "source": [
-            "askerî"
+            "askeri"
         ],
         "next_review_date": null
     },
@@ -45955,7 +45973,7 @@
         "past": "",
         "v3": "",
         "source": [
-            "kâbus"
+            "kabus"
         ],
         "next_review_date": null
     },
