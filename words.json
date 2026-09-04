@@ -4301,8 +4301,8 @@
         "language": "en",
         "word_type": "noun",
         "sentence": [
-            "Let's go to the",
-            "tonight"
+            "She is studying the history of American",
+            ""
         ],
         "target": "cinema",
         "past": "",
@@ -6487,16 +6487,17 @@
     },
     {
         "language": "en",
-        "word_type": "noun",
+        "word_type": "adjective",
         "sentence": [
-            "She lives in a",
+            "The land around the lake is completely",
             ""
         ],
         "target": "flat",
         "past": "",
         "v3": "",
         "source": [
-            "daire"
+            "düz",
+            "patlak"
         ],
         "next_review_date": null
     },
@@ -6594,14 +6595,14 @@
         "language": "en",
         "word_type": "noun",
         "sentence": [
-            "I like playing",
-            ""
+            "American",
+            "is played with an oval ball"
         ],
         "target": "football",
         "past": "",
         "v3": "",
         "source": [
-            "futbol"
+            "Amerikan futbolu"
         ],
         "next_review_date": null
     },
@@ -9795,7 +9796,7 @@
         "word_type": "adverb",
         "sentence": [
             "I",
-            "go to the cinema"
+            "go to the movies"
         ],
         "target": "often",
         "past": "",
@@ -10626,14 +10627,16 @@
         "language": "en",
         "word_type": "noun",
         "sentence": [
-            "The players are running on the football",
+            "She sang every note at exactly the right",
             ""
         ],
         "target": "pitch",
         "past": "",
         "v3": "",
         "source": [
-            "saha"
+            "ses perdesi",
+            "atış",
+            "sunum"
         ],
         "next_review_date": null
     },
@@ -11410,14 +11413,15 @@
         "language": "en",
         "word_type": "noun",
         "sentence": [
-            "I sent the letter by",
-            "yesterday"
+            "She wrote a long",
+            "on her blog"
         ],
         "target": "post",
         "past": "",
         "v3": "",
         "source": [
-            "posta"
+            "gönderi",
+            "direk"
         ],
         "next_review_date": null
     },
@@ -12357,7 +12361,7 @@
         "word_type": "adjective",
         "sentence": [
             "He is a",
-            "football player"
+            "soccer player"
         ],
         "target": "professional",
         "past": "",
@@ -12710,7 +12714,7 @@
         "word_type": "noun",
         "sentence": [
             "She studies",
-            "at university"
+            "at the university"
         ],
         "target": "psychology",
         "past": "",
@@ -14128,7 +14132,7 @@
         "word_type": "adjective",
         "sentence": [
             "He looked calm and",
-            "after the holiday"
+            "after the vacation"
         ],
         "target": "relaxed",
         "past": "",
@@ -14347,7 +14351,7 @@
         "word_type": "noun",
         "sentence": [
             "The",
-            "for this flat is very high"
+            "for this apartment is very high"
         ],
         "target": "rent",
         "past": "",
@@ -14658,7 +14662,7 @@
         "language": "en",
         "word_type": "noun",
         "sentence": [
-            "We spent our holiday at a seaside",
+            "We spent our vacation at a seaside",
             ""
         ],
         "target": "resort",
@@ -15314,7 +15318,7 @@
         "word_type": "noun",
         "sentence": [
             "We sat in the front",
-            "of the cinema"
+            "of the movie theater"
         ],
         "target": "row",
         "past": "",
@@ -16280,7 +16284,7 @@
         "language": "en",
         "word_type": "noun",
         "sentence": [
-            "After the holiday she was her old",
+            "After the vacation she was her old",
             "again"
         ],
         "target": "self",
@@ -21232,7 +21236,7 @@
         "word_type": "pronoun",
         "sentence": [
             "I saw",
-            "at the cinema last night"
+            "at the movies last night"
         ],
         "target": "them",
         "past": "",
@@ -21910,8 +21914,8 @@
         "language": "en",
         "word_type": "noun",
         "sentence": [
-            "Please tell me where the",
-            "is"
+            "The plumber repaired the broken",
+            ""
         ],
         "target": "toilet",
         "past": "",
@@ -23094,8 +23098,8 @@
         "language": "en",
         "word_type": "adjective",
         "sentence": [
-            "We took the",
-            "train to the center"
+            "The workers dug a long",
+            "tunnel"
         ],
         "target": "underground",
         "past": "",
@@ -23325,7 +23329,7 @@
         "language": "en",
         "word_type": "noun",
         "sentence": [
-            "My daughter studies law at",
+            "My daughter studies law at the",
             ""
         ],
         "target": "university",
@@ -23945,7 +23949,7 @@
         "word_type": "noun",
         "sentence": [
             "The",
-            "of the accident is in hospital"
+            "of the accident is in the hospital"
         ],
         "target": "victim",
         "past": "",
@@ -24638,7 +24642,7 @@
         "language": "en",
         "word_type": "noun",
         "sentence": [
-            "We go to the sea at the",
+            "We go to the sea on the",
             ""
         ],
         "target": "weekend",
@@ -25288,7 +25292,7 @@
         "language": "en",
         "word_type": "preposition",
         "sentence": [
-            "I went to the cinema",
+            "I went to the movies",
             "my friends"
         ],
         "target": "with",
@@ -25383,7 +25387,7 @@
         "word_type": "adjective",
         "sentence": [
             "We had a",
-            "holiday in Italy"
+            "vacation in Italy"
         ],
         "target": "wonderful",
         "past": "",
@@ -25893,7 +25897,7 @@
         "language": "en",
         "word_type": "noun",
         "sentence": [
-            "He was a good football player in his",
+            "He was a good soccer player in his",
             ""
         ],
         "target": "youth",
@@ -26745,7 +26749,7 @@
         "word_type": "noun",
         "sentence": [
             "She studies",
-            "at university"
+            "at the university"
         ],
         "target": "architecture",
         "past": "",
@@ -28593,7 +28597,7 @@
         "word_type": "noun",
         "sentence": [
             "A young",
-            "moved into the flat below"
+            "moved into the apartment below"
         ],
         "target": "couple",
         "past": "",
@@ -30189,7 +30193,7 @@
         "word_type": "noun",
         "sentence": [
             "He is a big",
-            "of this football team"
+            "of this soccer team"
         ],
         "target": "fan",
         "past": "",
@@ -30687,7 +30691,7 @@
         "word_type": "noun",
         "sentence": [
             "Please put the",
-            "in the bin outside"
+            "in the trash can outside"
         ],
         "target": "garbage",
         "past": "",
@@ -33681,7 +33685,7 @@
         "language": "en",
         "word_type": "adjective",
         "sentence": [
-            "Football is hard",
+            "Soccer is hard",
             "work"
         ],
         "target": "physical",
@@ -34152,7 +34156,7 @@
         "language": "en",
         "word_type": "adjective",
         "sentence": [
-            "That dripping tap is very",
+            "That dripping faucet is very",
             ""
         ],
         "target": "annoying",
@@ -39206,7 +39210,7 @@
         "word_type": "noun",
         "sentence": [
             "She studied English",
-            "at university"
+            "at the university"
         ],
         "target": "literature",
         "past": "",
@@ -39316,7 +39320,7 @@
         "language": "en",
         "word_type": "noun",
         "sentence": [
-            "A holiday abroad is a real",
+            "A vacation abroad is a real",
             "for us"
         ],
         "target": "luxury",
@@ -42840,7 +42844,7 @@
         "word_type": "verb",
         "sentence": [
             "You",
-            "a long holiday"
+            "a long vacation"
         ],
         "target": "deserve",
         "past": "deserved",
@@ -44198,7 +44202,7 @@
         "word_type": "noun",
         "sentence": [
             "A",
-            "of boys was playing football"
+            "of boys was playing soccer"
         ],
         "target": "gang",
         "past": "",
@@ -46483,7 +46487,7 @@
         "word_type": "verb",
         "sentence": [
             "The school does not",
-            "mobile phones"
+            "cell phones"
         ],
         "target": "permit",
         "past": "permitted",
@@ -46546,7 +46550,7 @@
         "word_type": "noun",
         "sentence": [
             "He studied",
-            "at university"
+            "at the university"
         ],
         "target": "philosophy",
         "past": "",
