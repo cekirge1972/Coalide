@@ -109,7 +109,7 @@
         "word_type": "verb",
         "sentence": [
             "I will",
-            "soon as I can"
+            "there as soon as I can"
         ],
         "target": "get",
         "past": "got",
@@ -436,6 +436,7 @@
         "past": "needed",
         "v3": "needed",
         "source": [
+            "ihtiyaç duymak",
             "ihtiyacı olmak"
         ],
         "next_review_date": null
@@ -2587,6 +2588,7 @@
         "past": "",
         "v3": "",
         "source": [
+            "sonra",
             "sonrasında"
         ],
         "next_review_date": null
@@ -2818,6 +2820,7 @@
         "past": "",
         "v3": "",
         "source": [
+            "başka bir",
             "bir diğer"
         ],
         "next_review_date": null
@@ -2919,11 +2922,11 @@
             "My birthday is in",
             ""
         ],
-        "target": "april",
+        "target": "April",
         "past": "",
         "v3": "",
         "source": [
-            "nisan"
+            "Nisan"
         ],
         "next_review_date": null
     },
@@ -3071,11 +3074,11 @@
             "School starts in",
             ""
         ],
-        "target": "august",
+        "target": "August",
         "past": "",
         "v3": "",
         "source": [
-            "ağustos"
+            "Ağustos"
         ],
         "next_review_date": null
     },
@@ -3319,6 +3322,7 @@
         "past": "became",
         "v3": "become",
         "source": [
+            "olmak",
             "haline gelmek"
         ],
         "next_review_date": null
@@ -3394,7 +3398,8 @@
         "past": "",
         "v3": "",
         "source": [
-            "arka"
+            "arkasında",
+            "arkasına"
         ],
         "next_review_date": null
     },
@@ -3695,6 +3700,7 @@
         "past": "",
         "v3": "",
         "source": [
+            "her ikisi de",
             "ikisi birden"
         ],
         "next_review_date": null
@@ -4617,6 +4623,7 @@
         "past": "picked",
         "v3": "picked",
         "source": [
+            "seçmek",
             "toplamak"
         ],
         "next_review_date": null
@@ -4812,7 +4819,8 @@
         "past": "",
         "v3": "",
         "source": [
-            "yemek pişirmek"
+            "yemek pişirme",
+            "aşçılık"
         ],
         "next_review_date": null
     },
@@ -5056,7 +5064,8 @@
         "past": "",
         "v3": "",
         "source": [
-            "dans etmek"
+            "dans etme",
+            "dans"
         ],
         "next_review_date": null
     },
@@ -5159,11 +5168,11 @@
             "My birthday is in",
             ""
         ],
-        "target": "december",
+        "target": "December",
         "past": "",
         "v3": "",
         "source": [
-            "aralık"
+            "Aralık"
         ],
         "next_review_date": null
     },
@@ -6233,11 +6242,11 @@
             "My friend's birthday is in",
             ""
         ],
-        "target": "february",
+        "target": "February",
         "past": "",
         "v3": "",
         "source": [
-            "şubat"
+            "Şubat"
         ],
         "next_review_date": null
     },
@@ -6252,7 +6261,8 @@
         "past": "",
         "v3": "",
         "source": [
-            "hissiyat"
+            "his",
+            "duygu"
         ],
         "next_review_date": null
     },
@@ -6282,7 +6292,8 @@
         "past": "",
         "v3": "",
         "source": [
-            "az"
+            "az",
+            "birkaç"
         ],
         "next_review_date": null
     },
@@ -6716,7 +6727,7 @@
             "I see my friends on",
             ""
         ],
-        "target": "friday",
+        "target": "Friday",
         "past": "",
         "v3": "",
         "source": [
@@ -6750,7 +6761,8 @@
         "past": "",
         "v3": "",
         "source": [
-            "dostça"
+            "cana yakın",
+            "arkadaş canlısı"
         ],
         "next_review_date": null
     },
@@ -7146,6 +7158,7 @@
         "past": "",
         "v3": "",
         "source": [
+            "yarım",
             "yarı"
         ],
         "next_review_date": null
@@ -7872,6 +7885,8 @@
         "past": "",
         "v3": "",
         "source": [
+            "mülakat",
+            "görüşme",
             "röportaj"
         ],
         "next_review_date": null
@@ -8359,6 +8374,7 @@
         "past": "",
         "v3": "",
         "source": [
+            "hayat",
             "yaşam"
         ],
         "next_review_date": null
@@ -9263,7 +9279,8 @@
         "past": "",
         "v3": "",
         "source": [
-            "ad"
+            "ad",
+            "isim"
         ],
         "next_review_date": null
     },
@@ -10121,7 +10138,8 @@
         "past": "",
         "v3": "",
         "source": [
-            "tablo"
+            "tablo",
+            "resim"
         ],
         "next_review_date": null
     },
@@ -13765,7 +13783,7 @@
         "language": "en",
         "word_type": "verb",
         "sentence": [
-            "The teacher often",
+            "Teachers often",
             "to this book in class"
         ],
         "target": "refer",
@@ -15710,7 +15728,7 @@
         "past": "",
         "v3": "",
         "source": [
-            "cumartesi"
+            "Cumartesi"
         ],
         "next_review_date": null
     },
@@ -16396,7 +16414,7 @@
         "past": "",
         "v3": "",
         "source": [
-            "eylül"
+            "Eylül"
         ],
         "next_review_date": null
     },
@@ -20067,7 +20085,7 @@
         "past": "",
         "v3": "",
         "source": [
-            "pazar"
+            "Pazar"
         ],
         "next_review_date": null
     },
@@ -21651,7 +21669,7 @@
         "past": "",
         "v3": "",
         "source": [
-            "perşembe"
+            "Perşembe"
         ],
         "next_review_date": null
     },
@@ -22760,7 +22778,7 @@
         "past": "",
         "v3": "",
         "source": [
-            "salı"
+            "Salı"
         ],
         "next_review_date": null
     },
@@ -23460,14 +23478,15 @@
         "language": "en",
         "word_type": "preposition",
         "sentence": [
-            "The decision depends",
-            "the weather"
+            "The little bird sat",
+            "the branch"
         ],
         "target": "upon",
         "past": "",
         "v3": "",
         "source": [
-            "üzerine"
+            "üzerine",
+            "üzerinde"
         ],
         "next_review_date": null
     },
@@ -24580,7 +24599,7 @@
         "past": "",
         "v3": "",
         "source": [
-            "çarşamba"
+            "Çarşamba"
         ],
         "next_review_date": null
     },
@@ -24794,7 +24813,8 @@
         "past": "",
         "v3": "",
         "source": [
-            "ne zaman istersen"
+            "her ne zaman",
+            "ne zaman olursa"
         ],
         "next_review_date": null
     },
@@ -24855,7 +24875,8 @@
         "past": "",
         "v3": "",
         "source": [
-            "-ip -mediği"
+            "-ip -mediğini",
+            "olup olmadığını"
         ],
         "next_review_date": null
     },
@@ -26030,7 +26051,7 @@
         "past": "",
         "v3": "",
         "source": [
-            "dvd"
+            "DVD"
         ],
         "next_review_date": null
     },
@@ -26356,7 +26377,7 @@
         "v3": "",
         "source": [
             "-e karşı",
-            "-e dayalı"
+            "-e yaslı"
         ],
         "next_review_date": null
     },
@@ -26636,7 +26657,8 @@
         "past": "",
         "v3": "",
         "source": [
-            "hiçbir yerde"
+            "hiçbir yerde",
+            "herhangi bir yerde"
         ],
         "next_review_date": null
     },
@@ -29519,7 +29541,7 @@
         "past": "",
         "v3": "",
         "source": [
-            "her iki",
+            "ikisinden biri",
             "ya da"
         ],
         "next_review_date": null
@@ -31646,8 +31668,8 @@
         "language": "en",
         "word_type": "verb",
         "sentence": [
-            "Who did",
-            "the telephone?"
+            "Bell was the first person to",
+            "the telephone"
         ],
         "target": "invent",
         "past": "invented",
@@ -33986,8 +34008,8 @@
         "language": "en",
         "word_type": "adjective",
         "sentence": [
-            "We only serve non-",
-            "drinks here"
+            "We do not serve",
+            "drinks to children"
         ],
         "target": "alcoholic",
         "past": "",
@@ -43834,8 +43856,8 @@
         "past": "",
         "v3": "",
         "source": [
-            "hemcins",
-            "arkadaş"
+            "diğer",
+            "aynı durumdaki"
         ],
         "next_review_date": null
     },
@@ -45472,7 +45494,7 @@
         "language": "en",
         "word_type": "noun",
         "sentence": [
-            "Smoking damages every",
+            "The doctor listened to his left",
             ""
         ],
         "target": "lung",
