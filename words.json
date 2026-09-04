@@ -2091,7 +2091,7 @@
         "past": "",
         "v3": "",
         "source": [
-            "hindistan cevizi"
+            "Hindistan cevizi"
         ],
         "next_review_date": null
     },
@@ -2145,8 +2145,8 @@
         "language": "en",
         "word_type": "noun",
         "sentence": [
-            "I like eating",
-            ""
+            "I ordered a",
+            "and fries"
         ],
         "target": "cheeseburger",
         "past": "",
@@ -3214,8 +3214,8 @@
         "language": "en",
         "word_type": "noun",
         "sentence": [
-            "I like eating",
-            ""
+            "This yellow",
+            "is very sweet"
         ],
         "target": "banana",
         "past": "",
@@ -16117,7 +16117,7 @@
         "v3": "",
         "source": [
             "ikincil",
-            "orta öğretim"
+            "ortaöğretim"
         ],
         "next_review_date": null
     },
